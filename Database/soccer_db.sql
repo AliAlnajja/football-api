@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2022 at 01:10 AM
+-- Generation Time: Nov 04, 2022 at 02:50 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -157,7 +157,28 @@ INSERT INTO `player` (`PlayerId`, `Name`, `Age`, `position`, `TeamId`, `Wages`, 
 (30, 'Philip Billing', 26, 'Midfield', 3, 2, 192, 79, 'Healthy', '', 20),
 (31, 'Ryan Christie', 27, 'Midfield', 3, 1, 178, 72, 'Healthy', '', 10),
 (32, 'Emiliano Marcondes', 27, 'Midfield', 3, 1, 183, 74, 'Healthy', '', 2),
-(33, 'Dominic Solanke', 25, 'Forward', 3, 3, 187, 74, 'Healthy', '', 20);
+(33, 'Dominic Solanke', 25, 'Forward', 3, 3, 187, 74, 'Healthy', '', 20),
+(34, 'David Raya', 27, 'Goalkeeper', 4, 1, 186, 81, 'Healthy', '', 24),
+(35, 'Ethan Pinnock', 29, 'Defense', 4, 1, 188, 78, 'Healthy', '', 13),
+(36, 'Kristoffer Ajer', 24, 'Defense', 4, 1, 196, 83, 'Healthy', '', 18),
+(37, 'Christian Norgaard', 28, 'Midfield', 4, 1, 185, 69, 'Healthy', '', 15),
+(38, 'Frank Onyeka', 24, 'Midfield', 4, 1, 183, 74, 'Healthy', '', 10),
+(39, 'Ivan Toney', 26, 'Forward', 4, 1, 179, 64, 'Healthy', '', 50),
+(40, 'Yoane Wissa', 26, 'Forward', 4, 1, 180, 72, 'Healthy', '', 17),
+(41, 'Robert Sanchez', 24, 'Goalkeeper', 5, 1, 197, 87, 'Healthy', '', 35),
+(42, 'Lewis Dunk', 30, 'Defense', 5, 4, 192, 87, 'Healthy', '', 20),
+(43, 'Adam Lallana', 34, 'Midfield', 5, 4, 173, 67, 'Healthy', '', 2),
+(44, 'Leandro Trossard', 27, 'Forward', 5, 27, 172, 60, 'Healthy', '', 33),
+(45, 'Adam Webster', 27, 'Defense', 5, 3, 192, 79, 'Healthy', '', 24),
+(46, 'Moises Caicedo', 20, 'Midfield', 5, 1, 178, 74, 'Healthy', '', 42),
+(47, 'Solly March', 27, 'Forward', 5, 2, 180, 72, 'Healthy', '', 13),
+(48, 'Kepa Arrizabalaga', 27, 'Goalkeeper', 6, 27, 189, 87, 'Healthy', '', 17),
+(49, 'Kalidou Koulibaly', 31, 'Defense', 6, 16, 195, 88, 'Healthy', '', 39),
+(50, 'N\'Golo Kante', 31, 'Midfield', 6, 15, 169, 68, 'Healthy', 'Adidas', 33),
+(51, 'Reece James', 22, 'Defence', 6, 13, 172, 63, 'Healthy', '', 77),
+(52, 'Raheem Sterling', 27, 'Midfield', 6, 18, 170, 69, 'Healthy', 'New Balance', 77),
+(53, 'Kai Havertz', 28, 'Forward', 6, 8, 186, 77, 'Healthy', '', 77),
+(54, 'Mason Mount', 23, 'Forward', 6, 4, 175, 63, 'Healthy', '', 83);
 
 -- --------------------------------------------------------
 
