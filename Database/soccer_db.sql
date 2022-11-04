@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 04, 2022 at 02:50 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Host: localhost
+-- Generation Time: Nov 04, 2022 at 02:38 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,10 +79,16 @@ CREATE TABLE `goal` (
 
 CREATE TABLE `league` (
   `LeagueId` int(11) NOT NULL,
-  `TeamId` int(11) NOT NULL,
   `Name` varchar(40) NOT NULL,
   `Country` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `league`
+--
+
+INSERT INTO `league` (`LeagueId`, `Name`, `Country`) VALUES
+(1, 'Premier League', 'England');
 
 -- --------------------------------------------------------
 
@@ -99,6 +105,68 @@ CREATE TABLE `manager` (
   `NumExp` int(11) NOT NULL,
   `TeamId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `manager`
+--
+
+INSERT INTO `manager` (`ManagerId`, `Name`, `Age`, `contract`, `TrophyCabinet`, `NumExp`, `TeamId`) VALUES
+(1, 'Mikel Arteta', 40, 2025, 7, 4, 1),
+(2, 'Unai Emery', 51, 2025, 11, 22, 2),
+(3, 'Gary O\'Neil', 39, 2023, 0, 1, 3),
+(4, 'Thomas Frank', 49, 2025, 0, 2, 4),
+(5, 'Robert De Zerbi', 43, 2026, 2, 9, 5),
+(6, 'Graham Potter', 47, 2027, 1, 15, 6),
+(7, 'Patrick Vieira', 46, 2024, 0, 10, 7),
+(8, 'Frank Lampard', 44, 2024, 0, 4, 8),
+(9, 'Marco Silva', 45, 2024, 4, 10, 9),
+(10, 'Jesse Marsch', 48, 2025, 5, 13, 10),
+(11, 'Brendan Rodgers', 49, 2025, 9, 23, 11),
+(12, 'Jürgen Klopp', 55, 2026, 14, 20, 12),
+(13, 'Pep Guardiola', 51, 2023, 34, 15, 13),
+(14, 'Erik ten Hag', 52, 2025, 7, 20, 14),
+(17, 'Ralph Hasenhüttl', 55, 2024, 1, 17, 17),
+(18, 'Antonio Conte', 53, 2023, 8, 17, 18),
+(19, 'David Moyes', 59, 2024, 1, 25, 19),
+(20, 'Steve Davis', 54, 2023, 0, 19, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participation`
+--
+
+CREATE TABLE `participation` (
+  `ParticipationId` int(11) NOT NULL,
+  `LeagueId` int(11) NOT NULL,
+  `TeamId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `participation`
+--
+
+INSERT INTO `participation` (`ParticipationId`, `LeagueId`, `TeamId`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 1, 9),
+(10, 1, 10),
+(11, 1, 11),
+(12, 1, 12),
+(13, 1, 13),
+(14, 1, 14),
+(15, 1, 15),
+(16, 1, 16),
+(17, 1, 17),
+(18, 1, 18),
+(19, 1, 19),
+(20, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -302,8 +370,7 @@ ALTER TABLE `goal`
 -- Indexes for table `league`
 --
 ALTER TABLE `league`
-  ADD PRIMARY KEY (`LeagueId`),
-  ADD KEY `League_Team_FK` (`TeamId`);
+  ADD PRIMARY KEY (`LeagueId`);
 
 --
 -- Indexes for table `manager`
@@ -311,6 +378,14 @@ ALTER TABLE `league`
 ALTER TABLE `manager`
   ADD PRIMARY KEY (`ManagerId`),
   ADD KEY `Manager_Team_FK` (`TeamId`);
+
+--
+-- Indexes for table `participation`
+--
+ALTER TABLE `participation`
+  ADD PRIMARY KEY (`ParticipationId`),
+  ADD KEY `League_Team_FK` (`LeagueId`),
+  ADD KEY `Team_League_FK` (`TeamId`);
 
 --
 -- Indexes for table `player`
@@ -363,16 +438,17 @@ ALTER TABLE `goal`
   ADD CONSTRAINT `Goal_Player_FK` FOREIGN KEY (`PlayerId`) REFERENCES `player` (`PlayerId`);
 
 --
--- Constraints for table `league`
---
-ALTER TABLE `league`
-  ADD CONSTRAINT `League_Team_FK` FOREIGN KEY (`TeamId`) REFERENCES `teams` (`TeamId`);
-
---
 -- Constraints for table `manager`
 --
 ALTER TABLE `manager`
   ADD CONSTRAINT `Manager_Team_FK` FOREIGN KEY (`TeamId`) REFERENCES `teams` (`TeamId`);
+
+--
+-- Constraints for table `participation`
+--
+ALTER TABLE `participation`
+  ADD CONSTRAINT `League_Team_FK` FOREIGN KEY (`LeagueId`) REFERENCES `league` (`LeagueId`),
+  ADD CONSTRAINT `Team_League_FK` FOREIGN KEY (`TeamId`) REFERENCES `teams` (`TeamId`);
 
 --
 -- Constraints for table `player`
