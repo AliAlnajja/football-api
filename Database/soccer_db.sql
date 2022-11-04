@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2022 at 06:42 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 04, 2022 at 01:10 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -119,6 +119,45 @@ CREATE TABLE `player` (
   `BrandAssoc` varchar(40) NOT NULL,
   `Value` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `player`
+--
+
+INSERT INTO `player` (`PlayerId`, `Name`, `Age`, `position`, `TeamId`, `Wages`, `Height`, `Weight`, `P_Condition`, `BrandAssoc`, `Value`) VALUES
+(1, 'Aaron Ramsdale', 24, 'Goalkeeper', 1, 3, 195, 79, 'Healthy', '', 28),
+(2, 'Ben White', 24, 'Defense', 1, 6, 182, 73, 'Healthy', '', 40),
+(3, 'Rob Holding', 27, 'Defense', 1, 2, 183, 74, 'Healthy', '', 8),
+(4, 'Gabriel Magalhaes', 24, 'Defense', 1, 3, 190, 78, 'Healthy', '', 27),
+(5, 'Kerian Tierney', 25, 'Defense', 1, 6, 178, 69, 'Healthy', '', 33),
+(6, 'Fabio Vieira', 22, 'Midfield', 1, 2, 170, 66, 'Healthy', '', 11),
+(7, 'Mohamed Elneny', 30, 'Midfield', 1, 3, 180, 77, 'Healthy', '', 10),
+(8, 'Albert Lokonga', 23, 'Midfield', 1, 3, 183, 78, 'Healthy', '', 17),
+(9, 'Reiss Nelson', 22, 'Forward', 1, 1, 175, 68, 'Healthy', '', 8),
+(10, 'Gabriel Jesus', 25, 'Forward', 1, 14, 177, 72, 'Healthy', 'Adidas', 83),
+(11, 'Edward Nketiah', 23, 'Forward', 1, 2, 175, 72, 'Healthy', '', 20),
+(12, 'Emiliano Martinez', 30, 'Goalkeeper', 2, 3, 193, 84, 'Healthy', '', 28),
+(13, 'Matty Cash', 25, 'Defense', 2, 3, 185, 76, 'Healthy', '', 24),
+(14, 'Ezri Konsa', 25, 'Defense', 2, 1, 183, 77, 'Healthy', '', 24),
+(15, 'Tyrone Mings', 29, 'Defense', 2, 4, 195, 77, 'Healthy', '', 28),
+(16, 'Ashley Young', 37, 'Defense', 2, 3, 175, 65, 'Healthy', '', 1),
+(17, 'Jacob Ramsey', 21, 'Midfield', 2, 1, 180, 73, 'Healthy', '', 31),
+(18, 'Douglas Luiz', 24, 'Midfield', 2, 2, 178, 66, 'Healthy', '', 39),
+(19, 'John McGinn', 28, 'Midfield', 2, 1, 178, 69, 'Healthy', '', 33),
+(20, 'Leon Bailey', 25, 'Forward', 2, 3, 181, 69, 'Healthy', '', 28),
+(21, 'Danny Ings', 30, 'Forward', 2, 6, 178, 73, 'Healthy', '', 18),
+(22, 'Ollie Watkins', 26, 'Forward', 2, 4, 180, 69, 'Healthy', '', 35),
+(23, 'Neto', 33, 'Goalkeeper', 3, 1, 193, 83, 'Healthy', '', 3),
+(24, 'Adam Smith', 31, 'Defense', 3, 2, 174, 78, 'Healthy', '', 2),
+(25, 'Chris Mepham', 24, 'Defense', 3, 2, 191, 77, 'Healthy', '', 7),
+(26, 'Marcos Senesi', 25, 'Defense', 3, 1, 184, 78, 'Healthy', '', 19),
+(27, 'Marcus Tavernier', 23, 'Midfield', 3, 1, 176, 68, 'Healthy', '', 17),
+(28, 'Lewis Cook', 25, 'Midfield', 3, 2, 175, 69, 'Healthy', '', 11),
+(29, 'Jefferson Lerma', 28, 'Midfield', 3, 3, 179, 69, 'Healthy', '', 17),
+(30, 'Philip Billing', 26, 'Midfield', 3, 2, 192, 79, 'Healthy', '', 20),
+(31, 'Ryan Christie', 27, 'Midfield', 3, 1, 178, 72, 'Healthy', '', 10),
+(32, 'Emiliano Marcondes', 27, 'Midfield', 3, 1, 183, 74, 'Healthy', '', 2),
+(33, 'Dominic Solanke', 25, 'Forward', 3, 3, 187, 74, 'Healthy', '', 20);
 
 -- --------------------------------------------------------
 
