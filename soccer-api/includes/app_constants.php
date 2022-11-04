@@ -32,6 +32,6 @@ define('HTTP_NOT_FOUND',404);
 
 // Supported Media Types.
 define('APP_MEDIA_TYPE_html', "text/html");
-define('APP_MEDIA_TYPE_JSON', "text/html");
+define('APP_MEDIA_TYPE_JSON', "application/json");
 define('APP_MEDIA_TYPE_XML', "application/xml");
 define('APP_MEDIA_TYPE_YAML', "application/yaml");

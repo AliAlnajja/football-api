@@ -20,7 +20,7 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 //-- Step 4)
 // TODO: change the name of the sub directory here. You also need to change it in .htaccess
-$app->setBasePath("/soccer-api");
+$app->setBasePath("/football-api/soccer-api");
 
 //-- Step 5) Include the files containing the definitions of the callbacks.
 require_once './includes/routes/artists_routes.php';
