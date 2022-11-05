@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 04, 2022 at 02:38 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Nov 06, 2022 at 12:15 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -246,7 +246,63 @@ INSERT INTO `player` (`PlayerId`, `Name`, `Age`, `position`, `TeamId`, `Wages`, 
 (51, 'Reece James', 22, 'Defence', 6, 13, 172, 63, 'Healthy', '', 77),
 (52, 'Raheem Sterling', 27, 'Midfield', 6, 18, 170, 69, 'Healthy', 'New Balance', 77),
 (53, 'Kai Havertz', 28, 'Forward', 6, 8, 186, 77, 'Healthy', '', 77),
-(54, 'Mason Mount', 23, 'Forward', 6, 4, 175, 63, 'Healthy', '', 83);
+(54, 'Mason Mount', 23, 'Forward', 6, 4, 175, 63, 'Healthy', '', 83),
+(55, 'Vicente Guaita', 35, 'Goalkeeper', 7, 4, 191, 79, 'Healthy', '', 2),
+(56, 'Joel Ward', 33, 'Defense', 7, 2, 188, 82, 'Healthy', '', 2),
+(57, 'Joachim Anderson', 26, 'Defense', 7, 4, 190, 74, 'Healthy', '', 32),
+(58, 'Will Hughes', 27, 'Midfield', 7, 3, 185, 73, 'Healthy', '', 5),
+(59, 'James McArthur', 34, 'Midfield', 7, 3, 178, 67, 'Healthy', '', 1),
+(60, 'Wilfred Zaha', 29, 'Forward', 7, 7, 180, 66, 'Healthy', '', 32),
+(61, 'Odsonne Edouard', 24, 'Forward', 7, 5, 187, 83, 'Healthy', '', 17),
+(62, 'Jordan Pickford', 28, 'Goalkeeper', 8, 5, 185, 77, 'Healthy', 'Puma', 28),
+(63, 'Yerry Mina', 28, 'Defense', 8, 6, 195, 74, 'Healthy', '', 18),
+(64, 'Ben Godfrey', 24, 'Defense', 8, 4, 183, 78, 'Healthy', '', 18),
+(65, ' Abdoulaye Doucouré', 29, 'Midfield', 8, 4, 180, 59, 'Healthy', '', 12),
+(66, 'Demarai Gray', 26, 'Midfield', 8, 2, 178, 66, 'Healthy', '', 20),
+(67, 'Moise Kean', 22, 'Forward', 8, 3, 182, 77, 'Healthy', '', 24),
+(68, 'Alex Iwobi', 26, 'Forward', 8, 3, 180, 74, 'Healthy', '', 25),
+(69, 'George Wickens', 20, 'Goalkeeper', 9, 1, 185, 73, 'Healthy', '', 1),
+(70, 'Layvin Kurzawa', 30, 'Defense', 9, 5, 182, 74, 'Healthy', '', 5),
+(71, 'Kenny Tete', 27, 'Defense', 9, 3, 180, 69, 'Healthy', '', 7),
+(72, 'Nathaniel Chalobah', 27, 'Midfield', 9, 3, 185, 79, 'Healthy', '', 3),
+(73, 'Tom Cairney', 31, 'Midfield', 9, 2, 183, 72, 'Healthy', '', 2),
+(74, 'Aleksandar Mitrovic', 28, 'Forward', 9, 3, 189, 83, 'Healthy', '', 28),
+(75, 'Daniel James', 24, 'Forward', 9, 3, 179, 78, 'Healthy', '', 16),
+(76, 'Illan Meslier', 22, 'Goalkeeper', 11, 1, 193, 73, 'Healthy', '', 22),
+(77, 'Robin Koch', 26, 'Defense', 11, 4, 192, 82, 'Healthy', '', 18),
+(78, 'Junior Firpo', 26, 'Defense', 11, 2, 184, 78, 'Healthy', '', 12),
+(79, 'Adam Forshaw', 31, 'Midfield', 11, 1, 185, 71, 'Healthy', '', 2),
+(80, 'Mateusz Klich', 32, 'Midfield', 11, 1, 183, 68, 'Healthy', '', 2),
+(81, 'Rodrigo Machado', 31, 'Forward', 11, 3, 180, 73, 'Healthy', '', 9),
+(82, 'Patrick Bamford', 29, 'Forward', 11, 2, 188, 71, 'Healthy', '', 12),
+(83, 'Alex Smithies', 32, 'Goalkeeper', 10, 2, 185, 83, 'Healthy', '', 1),
+(84, 'Jonny Evans', 34, 'Defense', 10, 4, 188, 77, 'Healthy', '', 3),
+(85, 'Ricardo Pereira', 29, 'Defense', 10, 4, 175, 69, 'Healthy', '', 12),
+(86, 'James Maddison', 25, 'Midfield', 10, 6, 175, 72, 'Healthy', '', 55),
+(87, 'Boubakary Soumaré', 23, 'Midfield', 10, 5, 188, 82, 'Healthy', '', 25),
+(88, 'Jamie Vardy', 35, 'Forward', 10, 7, 178, 76, 'Healthy', 'Nike', 4),
+(89, 'Patson Daka', 24, 'Forward', 10, 3, 180, 71, 'Healthy', '', 20),
+(90, 'Alisson', 30, 'Goalkeeper', 12, 8, 193, 91, 'Healthy', '', 50),
+(91, 'Virgil Van Dijk', 31, 'Defense', 12, 11, 193, 87, 'Healthy', 'Nike', 50),
+(92, 'Trent Alexander-Arnold', 24, 'Defense', 12, 9, 175, 68, 'Healthy', 'Under Armour', 70),
+(93, 'Thiago Alcántara', 31, 'Midfield', 12, 10, 172, 59, 'Healthy', 'Tommy Hilfigher', 18),
+(94, 'Fabinho', 29, 'Midfield', 12, 9, 188, 78, 'Healthy', '', 55),
+(95, 'Mohamed Salah', 30, 'Forward', 12, 18, 175, 71, 'Healthy', 'Adidas', 80),
+(96, 'Diogo Jota', 25, 'Forward', 12, 9, 178, 69, 'Healthy', '', 55),
+(97, 'Ederson', 29, 'Goalkeeper', 13, 3, 188, 88, 'Healthy', '', 45),
+(98, 'John Stones', 28, 'Defense', 13, 13, 188, 69, 'Healthy', '', 30),
+(99, 'Manuel Akanji', 27, 'Defense', 13, 9, 187, 84, 'Healthy', '', 30),
+(100, 'Kevin De Bruyne', 31, 'Midfield', 13, 20, 181, 69, 'Healthy', 'Nike', 80),
+(101, 'Jack Grealish', 27, 'Midfield', 13, 16, 175, 68, 'Healthy', 'Gucci', 70),
+(102, 'Erling Haaland', 22, 'Forward', 13, 20, 191, 87, 'Healthy', '', 170),
+(103, 'Julian Álvarez', 22, 'Forward', 13, 3, 173, 69, 'Healthy', '', 32),
+(104, 'David De Gea', 31, 'Goalkeeper', 14, 20, 192, 76, 'Healthy', 'Adidas', 15),
+(105, 'Raphael Varane', 29, 'Defense', 14, 18, 194, 83, 'healthy', 'Puma', 40),
+(106, 'Harry Maguire', 29, 'Defense', 14, 10, 188, 78, 'Healthy', 'Puma', 30),
+(107, 'Casemiro', 30, 'Midfield', 14, 16, 184, 79, 'Healthy', '', 50),
+(108, 'Bruno Fernandes', 28, 'Midfield', 14, 12, 173, 64, 'Healthy', '', 75),
+(109, 'Cristiano Ronaldo', 37, 'Forward', 14, 27, 187, 83, 'Healthy', 'Nike', 20),
+(110, 'Jadon Sancho', 22, 'Forward', 14, 18, 180, 73, 'Healthy', 'Nike', 60);
 
 -- --------------------------------------------------------
 
@@ -380,14 +436,6 @@ ALTER TABLE `manager`
   ADD KEY `Manager_Team_FK` (`TeamId`);
 
 --
--- Indexes for table `participation`
---
-ALTER TABLE `participation`
-  ADD PRIMARY KEY (`ParticipationId`),
-  ADD KEY `League_Team_FK` (`LeagueId`),
-  ADD KEY `Team_League_FK` (`TeamId`);
-
---
 -- Indexes for table `player`
 --
 ALTER TABLE `player`
@@ -442,13 +490,6 @@ ALTER TABLE `goal`
 --
 ALTER TABLE `manager`
   ADD CONSTRAINT `Manager_Team_FK` FOREIGN KEY (`TeamId`) REFERENCES `teams` (`TeamId`);
-
---
--- Constraints for table `participation`
---
-ALTER TABLE `participation`
-  ADD CONSTRAINT `League_Team_FK` FOREIGN KEY (`LeagueId`) REFERENCES `league` (`LeagueId`),
-  ADD CONSTRAINT `Team_League_FK` FOREIGN KEY (`TeamId`) REFERENCES `teams` (`TeamId`);
 
 --
 -- Constraints for table `player`
