@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2022 at 12:15 AM
+-- Generation Time: Nov 08, 2022 at 12:48 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -302,7 +302,28 @@ INSERT INTO `player` (`PlayerId`, `Name`, `Age`, `position`, `TeamId`, `Wages`, 
 (107, 'Casemiro', 30, 'Midfield', 14, 16, 184, 79, 'Healthy', '', 50),
 (108, 'Bruno Fernandes', 28, 'Midfield', 14, 12, 173, 64, 'Healthy', '', 75),
 (109, 'Cristiano Ronaldo', 37, 'Forward', 14, 27, 187, 83, 'Healthy', 'Nike', 20),
-(110, 'Jadon Sancho', 22, 'Forward', 14, 18, 180, 73, 'Healthy', 'Nike', 60);
+(110, 'Jadon Sancho', 22, 'Forward', 14, 18, 180, 73, 'Healthy', 'Nike', 60),
+(111, 'Karl Darlow', 32, 'Goalkeeper', 15, 1, 190, 88, 'Healthy', '', 2),
+(112, 'Kieran Trippier', 32, 'Defense', 15, 8, 173, 71, 'Healthy', '', 13),
+(113, 'Fabian Schar', 30, 'Defense', 15, 2, 188, 84, 'Healthy', '', 10),
+(114, 'Bruno Guimarães', 24, 'Midfield', 15, 6, 182, 74, 'Healthy', '', 60),
+(115, 'Miguel Almiron', 28, 'Midfield', 15, 2, 174, 70, 'Healthy', '', 20),
+(116, 'Alexander Isak', 23, 'Forward', 15, 6, 184, 83, 'Healthy', '', 50),
+(117, 'Allan Saint-Maximin', 25, 'Forward', 15, 2, 173, 67, 'Healthy', '', 40),
+(118, 'Dean Henderson', 25, 'Goalkeeper', 16, 5, 188, 85, 'Healthy', '', 22),
+(119, 'Renan Lodi', 24, 'Defense', 16, 3, 173, 68, 'Healthy', '', 20),
+(120, 'Steve Cook', 31, 'Defense', 16, 2, 185, 82, 'Healthy', '', 3),
+(121, 'Jesse Lingard', 29, 'Midfield', 16, 10, 175, 62, 'Healthy', '', 14),
+(122, 'Harry Arter', 32, 'Midfield', 16, 1, 176, 70, 'Healthy', '', 1),
+(123, 'Lyle Taylor', 32, 'Forward', 16, 1, 188, 79, 'Healthy', '', 1),
+(124, 'Sam Surridge', 24, 'Forward', 16, 1, 188, 79, 'Healthy', '', 4),
+(125, 'Alex McCarthy', 32, 'Goalkeeper', 17, 3, 193, 79, 'Healthy', '', 2),
+(126, 'Romain Perraud', 25, 'Defense', 17, 2, 173, 68, 'Healthy', '', 2),
+(127, 'Mohammed Salisu', 23, 'Defense', 17, 1, 191, 82, 'Healthy', '', 18),
+(128, 'Ainsley Maitland-Niles ', 25, 'Midfield', 17, 3, 180, 67, 'Healthy', '', 8),
+(129, 'Stuart Armstrong', 30, 'Midfield', 17, 3, 183, 68, 'Healthy', '', 6),
+(130, 'Theo Walcott', 33, 'Forward', 17, 4, 176, 69, 'Healthy', '', 2),
+(131, 'Mohamed Elyounoussi', 28, 'Forward', 17, 3, 178, 69, 'Healthy', '', 12);
 
 -- --------------------------------------------------------
 
