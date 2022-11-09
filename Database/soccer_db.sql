@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2022 at 12:48 AM
+-- Generation Time: Nov 09, 2022 at 02:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -323,7 +323,28 @@ INSERT INTO `player` (`PlayerId`, `Name`, `Age`, `position`, `TeamId`, `Wages`, 
 (128, 'Ainsley Maitland-Niles ', 25, 'Midfield', 17, 3, 180, 67, 'Healthy', '', 8),
 (129, 'Stuart Armstrong', 30, 'Midfield', 17, 3, 183, 68, 'Healthy', '', 6),
 (130, 'Theo Walcott', 33, 'Forward', 17, 4, 176, 69, 'Healthy', '', 2),
-(131, 'Mohamed Elyounoussi', 28, 'Forward', 17, 3, 178, 69, 'Healthy', '', 12);
+(131, 'Mohamed Elyounoussi', 28, 'Forward', 17, 3, 178, 69, 'Healthy', '', 12),
+(132, 'Hugo Lloris', 35, 'Goalkeeper', 18, 5, 188, 78, 'Healthy', '', 7),
+(133, 'Cristian Romero', 24, 'Defense', 18, 9, 185, 82, 'Healthy', '', 55),
+(134, 'Clément Lenglet', 27, 'Defense', 18, 6, 186, 81, 'Healthy', '', 12),
+(135, 'Ivan Perisic', 33, 'Midfield', 18, 9, 187, 78, 'Healthy', '', 10),
+(136, 'Pierre-Emile Hojbjerg', 27, 'Midfield', 18, 5, 185, 81, 'Healthy', '', 45),
+(137, 'Heung-Min Son', 30, 'Forward', 18, 10, 183, 76, 'Healthy', 'Calvin Klein', 70),
+(138, 'Harry Kane', 29, 'Forward', 18, 10, 188, 73, 'Healthy', 'Nike', 90),
+(139, 'Alphonse Areola', 29, 'Goalkeeper', 19, 6, 192, 87, 'Healthy', '', 8),
+(140, 'Kurt Zouma', 28, 'Defense', 19, 6, 190, 92, 'Healthy', 'Adidas', 32),
+(141, 'Emerson Palmieri', 28, 'Defense', 19, 5, 176, 63, 'Healthy', '', 12),
+(142, 'Lucas Paquetá', 25, 'Midfield', 19, 8, 180, 72, 'Healthy', '', 45),
+(143, 'Michail Antonio', 32, 'Midfield', 19, 4, 180, 82, 'Healthy', 'Adidas', 9),
+(144, 'Jarrod Bowen', 25, 'Forward', 19, 5, 178, 69, 'Healthy', '', 42),
+(145, 'Gianluca Scamacca', 23, 'Forward', 19, 5, 195, 86, 'Healthy', '', 30),
+(146, 'José Sá', 29, 'Goalkeeper', 20, 1, 192, 86, 'Healthy', '', 18),
+(147, 'Nelson Semedo', 28, 'Defense', 20, 4, 177, 64, 'Healthy', '', 18),
+(148, 'Jonny Castro', 28, 'Defense', 20, 2, 175, 69, 'Healthy', '', 17),
+(149, 'Daniel Podence', 27, 'Forward', 20, 3, 165, 58, 'Healthy', '', 20),
+(150, 'Diego Costa', 34, 'Forward', 20, 3, 188, 81, 'Healthy', '', 4),
+(151, 'Joao Moutinho', 36, 'Midfield', 20, 5, 171, 60, 'Healthy', '', 2),
+(152, 'Matheus Nunes', 24, 'Midfield', 20, 4, 183, 78, 'Healthy', '', 45);
 
 -- --------------------------------------------------------
 
