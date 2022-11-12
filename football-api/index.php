@@ -20,7 +20,7 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 //-- Step 4)
 // TODO: change the name of the sub directory here. You also need to change it in .htaccess
-$app->setBasePath("/football-api/soccer-api");
+$app->setBasePath("/football-api");
 
 //-- Step 5) Include the files containing the definitions of the callbacks.
 require_once './includes/routes/artists_routes.php';
@@ -30,6 +30,10 @@ require_once './includes/routes/teams_routes.php';
 
 
 $app->get("/teams", "handleGetAllTeams");
+$app->post("/teams", "handleCreateTeam");
+$app->put("/teams", "handleUpdateTeam");
+$app->get("/teams/{team_id}", "handleGetTeamById");
+$app->delete("/teams/{team_id}", "handleDeleteTeam");
 
 
 // $app->get("/artists", "handleGetAllArtists");
