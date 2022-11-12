@@ -20,16 +20,34 @@ $app->addRoutingMiddleware();
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 //-- Step 4)
 // TODO: change the name of the sub directory here. You also need to change it in .htaccess
-$app->setBasePath("/football-api/soccer-api");
+$app->setBasePath("/football-api");
 
 //-- Step 5) Include the files containing the definitions of the callbacks.
 require_once './includes/routes/artists_routes.php';
 require_once './includes/routes/customers_routes.php';
 require_once './includes/routes/teams_routes.php';
-
-
+require_once './includes/routes/assists_routes.php';
+require_once './includes/routes/cards_routes.php';
+require_once './includes/routes/fixtures_routes.php';
+require_once './includes/routes/goals_routes.php';
+require_once './includes/routes/leagues_routes.php';
+require_once './includes/routes/managers_routes.php';
+require_once './includes/routes/participations_routes.php';
+require_once './includes/routes/players_routes.php';
+require_once './includes/routes/stadiums_routes.php';
 
 $app->get("/teams", "handleGetAllTeams");
+$app->get("/assists", "handleGetAllAssists");
+$app->get("/cards", "handleGetAllCards");
+$app->get("/fixtures", "handleGetAllFixtures");
+$app->get("/goals", "handleGetAllGoals");
+$app->get("/leagues", "handleGetAllLeagues");
+$app->get("/managers", "handleGetAllManagers");
+$app->get("/participations", "handleGetAllParticipations");
+$app->get("/players", "handleGetAllPlayers");
+$app->get("/stadiums", "handleGetAllStadiums");
+
+
 
 
 // $app->get("/artists", "handleGetAllArtists");
