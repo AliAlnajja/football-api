@@ -4,7 +4,7 @@ RewriteEngine On
 
 # Also, make sure the name of sub directory is specified without a trailing slash (/)
 
-RewriteBase /football-api/soccer-api
+RewriteBase /football-api
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
