@@ -47,7 +47,10 @@ $app->get("/participations", "handleGetAllParticipations");
 $app->get("/players", "handleGetAllPlayers");
 $app->get("/stadiums", "handleGetAllStadiums");
 
-
+$app->get("/players/{player_id}", "handleGetPlayerById");
+$app->get("/players/{player_id}/goals", "handleGetGoalsFromPlayer");
+$app->get("/players/{player_id}/cards", "handleGetCardsFromPlayer");
+$app->get("/players/{player_id}/assists", "handleGetAssistsFromPlayer");
 
 
 // $app->get("/artists", "handleGetAllArtists");

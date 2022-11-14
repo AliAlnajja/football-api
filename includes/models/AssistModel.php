@@ -22,4 +22,10 @@ class AssistModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getAssistsFromPlayer($player_id) {
+        $sql = "SELECT * FROM assist WHERE PlayerId = ?";
+        $data = $this->run($sql, [$player_id])->fetch();
+        return $data;
+    }
 }

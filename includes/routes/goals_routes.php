@@ -28,3 +28,37 @@ function handleGetAllGoals(Request $request, Response $response, array $args) {
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetGoalsFromPlayer(Request $request, Response $response, array $args) {
+    $goal_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $goal_model = new GoalModel();
+
+    $player_id = $args["player_id"];
+    
+    if (isset($player_id)) {
+        
+        $goal_info = $goal_model->getGoalsFromPlayer($player_id);
+        if (!$goal_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Player has no goal info.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($goal_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}

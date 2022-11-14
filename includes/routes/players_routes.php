@@ -28,3 +28,38 @@ function handleGetAllPlayers(Request $request, Response $response, array $args) 
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetPlayerById(Request $request, Response $response, array $args) {
+    $player_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $player_model = new PlayerModel();
+
+    $player_id = $args["player_id"];
+    
+    if (isset($player_id)) {
+        
+        $player_info = $player_model->getPlayerById($player_id);
+        if (!$player_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Player does not exist.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($player_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+

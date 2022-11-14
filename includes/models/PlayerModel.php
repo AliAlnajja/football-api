@@ -5,8 +5,8 @@ class PlayerModel extends BaseModel {
     private $table_name = "player";
 
     /**
-     * A model class for the `artist` database table.
-     * It exposes operations that can be performed on artists records.
+     * A model class for the `player` database table.
+     * It exposes operations that can be performed on player records.
      */
     function __construct() {
         // Call the parent class and initialize the database connection settings.
@@ -15,11 +15,17 @@ class PlayerModel extends BaseModel {
 
     /**
      * Retrieve all teams from the `teams` table.
-     * @return array A list of artists. 
+     * @return array A list of players. 
      */
     public function getAll() {
         $sql = "SELECT * FROM player";
         $data = $this->rows($sql);
+        return $data;
+    }
+
+    public function getPlayerById($player_id) {
+        $sql = "SELECT * FROM player WHERE PlayerId = ?";
+        $data = $this->run($sql, [$player_id])->fetch();
         return $data;
     }
 }
