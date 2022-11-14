@@ -22,4 +22,10 @@ class TeamModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getTeamFromManager($manager_id) {
+        $sql = "SELECT * FROM teams WHERE ManagerId = ?";
+        $data = $this->run($sql, [$manager_id])->fetch();
+        return $data;
+    }
 }

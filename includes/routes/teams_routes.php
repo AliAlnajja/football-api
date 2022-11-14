@@ -28,3 +28,37 @@ function handleGetAllTeams(Request $request, Response $response, array $args) {
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetTeamFromManager(Request $request, Response $response, array $args) {
+    $team_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $team_model = new TeamModel();
+
+    $manager_id = $args["manager_id"];
+    
+    if (isset($manager_id)) {
+        
+        $team_info = $team_model->getTeamFromManager($manager_id);
+        if (!$team_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Invalid Manager Id.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($team_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}

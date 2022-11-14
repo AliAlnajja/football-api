@@ -51,6 +51,8 @@ $app->get("/players/{player_id}", "handleGetPlayerById");
 $app->get("/players/{player_id}/goals", "handleGetGoalsFromPlayer");
 $app->get("/players/{player_id}/cards", "handleGetCardsFromPlayer");
 $app->get("/players/{player_id}/assists", "handleGetAssistsFromPlayer");
+$app->get("/managers/{manager_id}", "handleGetManagerById");
+$app->get("/managers/{manager_id}/team", "handleGetTeamFromManager");
 
 
 // $app->get("/artists", "handleGetAllArtists");

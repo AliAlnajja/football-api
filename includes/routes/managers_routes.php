@@ -28,3 +28,37 @@ function handleGetAllManagers(Request $request, Response $response, array $args)
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetManagerById(Request $request, Response $response, array $args) {
+    $manager_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $manager_model = new ManagerModel();
+
+    $manager_id = $args["manager_id"];
+    
+    if (isset($manager_id)) {
+        
+        $manager_info = $manager_model->getManagerById($manager_id);
+        if (!$manager_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Manager does not exist.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($manager_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
