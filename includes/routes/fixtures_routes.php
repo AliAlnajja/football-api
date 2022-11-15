@@ -28,3 +28,37 @@ function handleGetAllFixtures(Request $request, Response $response, array $args)
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetFixturesFromTeam(Request $request, Response $response, array $args) {
+    $fixture_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $fixture_model = new FixtureModel();
+
+    $team_id = $args["team_id"];
+    
+    if (isset($team_id)) {
+        
+        $fixture_info = $fixture_model->getFixturesFromTeam($team_id);
+        if (!$fixture_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Team has no fixture info.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($fixture_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}

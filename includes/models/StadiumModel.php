@@ -22,4 +22,10 @@ class StadiumModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getStadiumFromTeam($team_id) {
+        $sql = "SELECT * FROM stadium WHERE TeamId = ?";
+        $data = $this->run($sql, [$team_id])->fetch();
+        return $data;
+    }
 }

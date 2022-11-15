@@ -22,4 +22,11 @@ class LeagueModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getLeagueById($league_id) {
+        $sql = "SELECT * FROM league WHERE LeagueId = ?";
+        $data = $this->run($sql, [$league_id])->fetch();
+        return $data;
+    }
+
 }

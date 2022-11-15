@@ -28,3 +28,37 @@ function handleGetAllStadiums(Request $request, Response $response, array $args)
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetStadiumFromTeam(Request $request, Response $response, array $args) {
+    $stadium_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $stadium_model = new StadiumModel();
+
+    $team_id = $args["team_id"];
+    
+    if (isset($team_id)) {
+        
+        $stadium_info = $stadium_model->getStadiumFromTeam($team_id);
+        if (!$stadium_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Team has no stadium info.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($stadium_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}

@@ -28,4 +28,16 @@ class TeamModel extends BaseModel {
         $data = $this->run($sql, [$manager_id])->fetch();
         return $data;
     }
+
+    public function getTeamById($team_id) {
+        $sql = "SELECT * FROM teams WHERE TeamId = ?";
+        $data = $this->run($sql, [$team_id])->fetch();
+        return $data;
+    }
+
+    public function getTeamsFromLeague($league_id) {
+        $sql = "SELECT * FROM teams WHERE LeagueId = ?";
+        $data = $this->run($sql, [$league_id])->fetchAll();
+        return $data;
+    }
 }
