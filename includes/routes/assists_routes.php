@@ -28,3 +28,37 @@ function handleGetAllAssists(Request $request, Response $response, array $args) 
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetAssistsFromPlayer(Request $request, Response $response, array $args) {
+    $assist_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $assist_model = new AssistModel();
+
+    $player_id = $args["player_id"];
+    
+    if (isset($player_id)) {
+        
+        $assist_info = $assist_model->getAssistsFromPlayer($player_id);
+        if (!$assist_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "Player has no assist info.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($assist_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}

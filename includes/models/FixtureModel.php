@@ -22,4 +22,10 @@ class FixtureModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getFixturesFromTeam($team_id) {
+        $sql = "SELECT * FROM fixture WHERE TeamId = ?";
+        $data = $this->run($sql, [$team_id])->fetchAll();
+        return $data;
+    }
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2022 at 11:06 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Nov 15, 2022 at 01:46 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -569,35 +569,35 @@ CREATE TABLE `teams` (
   `Country` varchar(30) NOT NULL,
   `Value` int(11) NOT NULL,
   `position` int(11) NOT NULL,
-  `ManagerId` int(11) NOT NULL
+  `ManagerId` int(11) NOT NULL,
+  `LeagueId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`TeamId`, `Name`, `TotalTrophies`, `FoundedDate`, `Country`, `Value`, `position`, `ManagerId`) VALUES
-(1, 'Arsenal FC', 47, '1886-12-01', 'England', 2888, 1, 0),
-(2, 'Aston Villa FC', 24, '1975-03-01', 'England', 198, 2, 0),
-(3, 'Bournemouth AFC', 2, '1899-01-01', 'England', 150, 3, 0),
-(4, 'Brentford FC', 3, '1889-01-01', 'England', 50, 4, 0),
-(5, 'Brighton & Hove Albion FC', 5, '1901-06-24', 'England', 300, 5, 0),
-(6, 'Chelsea FC', 36, '1905-03-15', 'England', 3000, 6, 0),
-(7, 'Crystal Palace FC', 3, '1861-01-01', 'England', 300, 7, 0),
-(8, 'Everton FC', 20, '1878-01-01', 'England', 940, 8, 0),
-(9, 'Fulham FC', 5, '1879-01-01', 'England', 230, 9, 0),
-(10, 'Leicester City FC', 15, '1884-01-01', 'England', 670, 10, 0),
-(11, 'Leeds United FC', 13, '1919-10-17', 'England', 690, 11, 0),
-(12, 'Liverpool FC', 70, '1892-06-03', 'England', 2666, 12, 0),
-(13, 'Manchester City FC', 36, '1880-01-01', 'England', 4000, 13, 0),
-(14, 'Manchester United', 78, '1878-01-01', 'England', 2150, 14, 0),
-(15, 'Newcastle United FC', 15, '1892-12-09', 'England', 500, 15, 0),
-(16, 'Nottingham Forest FC', 15, '1865-01-01', 'England', 120, 16, 0),
-(17, 'Southampton FC', 3, '1865-01-01', 'England', 200, 17, 0),
-(18, 'Tottenham Hotspur FC', 26, '1885-09-05', 'England', 849, 18, 0),
-(19, 'West Ham United FC', 7, '1895-01-01', 'England', 900, 19, 0),
-(20, 'Wolverhampton Wanderers', 20, '1877-01-01', 'England', 450, 20, 0),
-(100, 'Test', 88, '1901-07-24', 'France', 3000, 50, 1);
+INSERT INTO `teams` (`TeamId`, `Name`, `TotalTrophies`, `FoundedDate`, `Country`, `Value`, `position`, `ManagerId`, `LeagueId`) VALUES
+(1, 'Arsenal FC', 47, '1886-12-01', 'England', 2888, 1, 1, 1),
+(2, 'Aston Villa FC', 24, '1975-03-01', 'England', 198, 2, 2, 1),
+(3, 'Bournemouth AFC', 2, '1899-01-01', 'England', 150, 3, 3, 1),
+(4, 'Brentford FC', 3, '1889-01-01', 'England', 50, 4, 4, 1),
+(5, 'Brighton & Hove Albion FC', 5, '1901-06-24', 'England', 300, 5, 5, 1),
+(6, 'Chelsea FC', 36, '1905-03-15', 'England', 3000, 6, 6, 1),
+(7, 'Crystal Palace FC', 3, '1861-01-01', 'England', 300, 7, 7, 1),
+(8, 'Everton FC', 20, '1878-01-01', 'England', 940, 8, 8, 1),
+(9, 'Fulham FC', 5, '1879-01-01', 'England', 230, 9, 9, 1),
+(10, 'Leicester City FC', 15, '1884-01-01', 'England', 670, 10, 10, 1),
+(11, 'Leeds United FC', 13, '1919-10-17', 'England', 690, 11, 11, 1),
+(12, 'Liverpool FC', 70, '1892-06-03', 'England', 2666, 12, 12, 1),
+(13, 'Manchester City FC', 36, '1880-01-01', 'England', 4000, 13, 13, 1),
+(14, 'Manchester United', 78, '1878-01-01', 'England', 2150, 14, 14, 1),
+(15, 'Newcastle United FC', 15, '1892-12-09', 'England', 500, 15, 15, 1),
+(16, 'Nottingham Forest FC', 15, '1865-01-01', 'England', 120, 16, 16, 1),
+(17, 'Southampton FC', 3, '1865-01-01', 'England', 200, 17, 17, 1),
+(18, 'Tottenham Hotspur FC', 26, '1885-09-05', 'England', 849, 18, 18, 1),
+(19, 'West Ham United FC', 7, '1895-01-01', 'England', 900, 19, 19, 1),
+(20, 'Wolverhampton Wanderers', 20, '1877-01-01', 'England', 450, 20, 20, 1);
 
 --
 -- Indexes for dumped tables
@@ -663,7 +663,8 @@ ALTER TABLE `stadium`
 --
 ALTER TABLE `teams`
   ADD PRIMARY KEY (`TeamId`),
-  ADD KEY `Team_Manager_FK` (`ManagerId`);
+  ADD KEY `Team_Manager_FK` (`ManagerId`),
+  ADD KEY `Team_League_FK` (`LeagueId`);
 
 --
 -- Constraints for dumped tables
@@ -710,6 +711,12 @@ ALTER TABLE `player`
 --
 ALTER TABLE `stadium`
   ADD CONSTRAINT `Stadium_Team_FK` FOREIGN KEY (`TeamId`) REFERENCES `teams` (`TeamId`);
+
+--
+-- Constraints for table `teams`
+--
+ALTER TABLE `teams`
+  ADD CONSTRAINT `Team_League_FK` FOREIGN KEY (`LeagueId`) REFERENCES `league` (`LeagueId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

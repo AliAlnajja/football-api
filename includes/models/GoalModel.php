@@ -22,4 +22,10 @@ class GoalModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getGoalsFromPlayer($player_id) {
+        $sql = "SELECT * FROM goal WHERE PlayerId = ?";
+        $data = $this->run($sql, [$player_id])->fetch();
+        return $data;
+    }
 }

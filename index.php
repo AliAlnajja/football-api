@@ -47,7 +47,17 @@ $app->get("/participations", "handleGetAllParticipations");
 $app->get("/players", "handleGetAllPlayers");
 $app->get("/stadiums", "handleGetAllStadiums");
 
-
+$app->get("/players/{player_id}", "handleGetPlayerById");
+$app->get("/players/{player_id}/goals", "handleGetGoalsFromPlayer");
+$app->get("/players/{player_id}/cards", "handleGetCardsFromPlayer");
+$app->get("/players/{player_id}/assists", "handleGetAssistsFromPlayer");
+$app->get("/managers/{manager_id}", "handleGetManagerById");
+$app->get("/managers/{manager_id}/teams", "handleGetTeamFromManager");
+$app->get("/teams/{team_id}", "handleGetTeamById");
+$app->get("/teams/{team_id}/fixtures", "handleGetFixturesFromTeam");
+$app->get("/teams/{team_id}/stadiums", "handleGetStadiumFromTeam");
+$app->get("/leagues/{league_id}", "handleGetLeagueById");
+$app->get("/leagues/{league_id}/teams", "handleGetTeamsFromLeague");
 
 
 // $app->get("/artists", "handleGetAllArtists");

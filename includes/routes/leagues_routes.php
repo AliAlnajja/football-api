@@ -28,3 +28,37 @@ function handleGetAllLeagues(Request $request, Response $response, array $args) 
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleGetLeagueById(Request $request, Response $response, array $args) {
+    $league_info = array();
+
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $league_model = new LeagueModel();
+
+    $league_id = $args["league_id"];
+    
+    if (isset($league_id)) {
+        
+        $league_info = $league_model->getLeagueById($league_id);
+        if (!$league_info) {
+            
+            $response_data = makeCustomJSONError("resourceNotFound", "League does not exist.");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_NOT_FOUND);
+        }
+    }
+    
+     
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode($league_info);
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}

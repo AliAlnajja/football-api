@@ -22,4 +22,10 @@ class ManagerModel extends BaseModel {
         $data = $this->rows($sql);
         return $data;
     }
+
+    public function getManagerById($manager_id) {
+        $sql = "SELECT * FROM manager WHERE ManagerId = ?";
+        $data = $this->run($sql, [$manager_id])->fetch();
+        return $data;
+    }
 }
