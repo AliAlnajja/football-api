@@ -53,11 +53,17 @@ $app->get("/players/{player_id}/cards", "handleGetCardsFromPlayer");
 $app->get("/players/{player_id}/assists", "handleGetAssistsFromPlayer");
 $app->get("/managers/{manager_id}", "handleGetManagerById");
 $app->get("/managers/{manager_id}/teams", "handleGetTeamFromManager");
-$app->get("/teams/{team_id}", "handleGetTeamById");
 $app->get("/teams/{team_id}/fixtures", "handleGetFixturesFromTeam");
 $app->get("/teams/{team_id}/stadiums", "handleGetStadiumFromTeam");
 $app->get("/leagues/{league_id}", "handleGetLeagueById");
 $app->get("/leagues/{league_id}/teams", "handleGetTeamsFromLeague");
+
+$app->post("/teams", "handleCreateTeam");
+$app->put("/teams", "handleUpdateTeam");
+$app->get("/teams/{team_id}", "handleGetTeamById");
+$app->delete("/teams/{team_id}", "handleDeleteTeam");
+
+
 
 
 // $app->get("/artists", "handleGetAllArtists");
