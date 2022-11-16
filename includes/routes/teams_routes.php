@@ -159,9 +159,9 @@ function handleCreateTeam(Request $request, Response $response) {
         $teamMan = $single_team["ManagerId"];
         $teamLeague = $single_team["LeagueId"];
 
-
         $team_record = array("TeamId" => $team_id, "Name" => $teamName, "TotalTrophies" => $teamTotalTrop, "FoundedDate" => $teamFD,
             "Country" => $teamCountry, "Value" => $teamValue, "position" => $teamPosition, "ManagerId" => $teamMan, "LeagueId" => $teamLeague);
+
         $team_model->createTeam($team_record);
     }
     
@@ -232,9 +232,9 @@ function handleUpdateTeam(Request $request, Response $response) {
         $teamMan = $single_team["ManagerId"];
         $teamLeague = $single_team["LeagueId"];
 
-        
         $team_record = array("Name" => $teamName, "TotalTrophies" => $teamTotalTrop, "FoundedDate" => $teamFD,
             "Country" => $teamCountry, "Value" => $teamValue, "position" => $teamPosition, "ManagerId" => $teamMan, "LeagueId" => $teamLeague);
+
         $team_condition = array("TeamId" => $team_id);
         $team_model->updateTeam($team_record, $team_condition);
     }
