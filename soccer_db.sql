@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2022 at 01:46 AM
+-- Generation Time: Nov 20, 2022 at 11:43 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -85,7 +85,32 @@ CREATE TABLE `card` (
 
 INSERT INTO `card` (`CardId`, `PlayerId`, `Total`, `CardType`) VALUES
 (1, 108, 5, 'yellow'),
-(2, 72, 1, 'red');
+(2, 72, 1, 'red'),
+(3, 5, 10, 'red'),
+(4, 6, 12, 'red'),
+(5, 7, 13, 'red'),
+(6, 8, 13, 'red'),
+(7, 50, 44, 'red'),
+(8, 40, 55, 'red'),
+(9, 60, 67, 'yellow'),
+(10, 87, 36, 'yellow'),
+(11, 89, 11, 'yellow'),
+(12, 85, 22, 'yellow'),
+(13, 52, 3, 'yellow'),
+(14, 12, 5, 'yellow'),
+(15, 47, 5, 'yellow'),
+(16, 66, 7, 'red'),
+(17, 89, 5, 'yellow'),
+(18, 93, 5, 'yellow'),
+(19, 47, 6, 'red'),
+(20, 38, 10, 'red'),
+(21, 39, 11, 'red'),
+(22, 22, 4, 'red'),
+(23, 39, 7, 'red'),
+(24, 24, 8, 'yellow'),
+(25, 75, 9, 'yellow'),
+(26, 70, 8, 'yellow'),
+(27, 71, 8, 'yellow');
 
 -- --------------------------------------------------------
 
