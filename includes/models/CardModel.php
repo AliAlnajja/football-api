@@ -28,4 +28,10 @@ class CardModel extends BaseModel {
         $data = $this->run($sql, [$player_id])->fetch();
         return $data;
     }
+
+    public function getCardsByType($type) {
+        $sql = "SELECT * FROM card WHERE CardType = ?";
+        $data = $this->rows($sql, [$type]);
+        return $data;
+    }
 }

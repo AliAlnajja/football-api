@@ -15,8 +15,15 @@ function handleGetAllCards(Request $request, Response $response, array $args) {
     $response_code = HTTP_OK;
     $card_model = new CardModel();
 
-    $card_info = $card_model->getAll();
-        
+    
+    
+    $filter_params = $request->getQueryParams();
+    if (isset($filter_params["type"])) {
+        // get cards by type
+        $card_info = $card_model->getCardsByType($filter_params["type"]);
+    } else {
+        $card_info = $card_model->getAll();
+    }  
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {
         $response_data = json_encode($card_info, JSON_INVALID_UTF8_SUBSTITUTE);

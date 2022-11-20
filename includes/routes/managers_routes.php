@@ -14,9 +14,14 @@ function handleGetAllManagers(Request $request, Response $response, array $args)
     $response_data = array();
     $response_code = HTTP_OK;
     $manager_model = new ManagerModel();
-
-    $manager_info = $manager_model->getAll();
-        
+    
+    $filter_params = $request->getQueryParams();
+    if (isset($filter_params["contract"])) {
+        //get managers by contract
+        $manager_info = $manager_model->getManagersByContract($filter_params["contract"]);
+    } else {
+        $manager_info = $manager_model->getAll();
+    }  
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {
         $response_data = json_encode($manager_info, JSON_INVALID_UTF8_SUBSTITUTE);

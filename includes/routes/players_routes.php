@@ -15,8 +15,16 @@ function handleGetAllPlayers(Request $request, Response $response, array $args) 
     $response_code = HTTP_OK;
     $player_model = new PlayerModel();
 
-    $player_info = $player_model->getAll();
-        
+    $filter_params = $request->getQueryParams();
+    if (isset($filter_params["position"])) {
+        //get players by position
+        $player_info = $player_model->getPlayersByPosition($filter_params["position"]);
+    } else if (isset($filter_params["brand"])) {
+        //get players by brand
+        $player_info = $player_model->getPlayersByBrand($filter_params["brand"]);
+    } else {
+        $player_info = $player_model->getAll();
+    }  
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {
         $response_data = json_encode($player_info, JSON_INVALID_UTF8_SUBSTITUTE);
