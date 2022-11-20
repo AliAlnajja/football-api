@@ -28,4 +28,10 @@ class ManagerModel extends BaseModel {
         $data = $this->run($sql, [$manager_id])->fetch();
         return $data;
     }
+
+    public function getManagersByContract($contract) {
+        $sql = "SELECT * FROM manager WHERE contract = ?";
+        $data = $this->rows($sql, [$contract]);
+        return $data;
+    }
 }

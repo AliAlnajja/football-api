@@ -28,4 +28,10 @@ class FixtureModel extends BaseModel {
         $data = $this->run($sql, [$team_id])->fetchAll();
         return $data;
     }
+
+    public function getFixturesByWeather($weather) {
+        $sql = "SELECT * FROM fixture WHERE Weather_Cond = ?";
+        $data = $this->rows($sql, [$weather]);
+        return $data;
+    }
 }

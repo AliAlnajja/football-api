@@ -15,8 +15,15 @@ function handleGetAllFixtures(Request $request, Response $response, array $args)
     $response_code = HTTP_OK;
     $fixture_model = new FixtureModel();
 
-    $fixture_info = $fixture_model->getAll();
+    
         
+    $filter_params = $request->getQueryParams();
+    if (isset($filter_params["weather"])) {
+        // get fixtures by weather
+        $fixture_info = $fixture_model->getFixturesByWeather($filter_params["weather"]);
+    } else {
+        $fixture_info = $fixture_model->getAll();
+    }  
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {
         $response_data = json_encode($fixture_info, JSON_INVALID_UTF8_SUBSTITUTE);

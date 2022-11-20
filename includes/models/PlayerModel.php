@@ -28,4 +28,16 @@ class PlayerModel extends BaseModel {
         $data = $this->run($sql, [$player_id])->fetch();
         return $data;
     }
+
+    public function getPlayersByPosition($position) {
+        $sql = "SELECT * FROM player WHERE Position = ?";
+        $data = $this->rows($sql, [$position]);
+        return $data;
+    }
+
+    public function getPlayersByBrand($brand) {
+        $sql = "SELECT * FROM player WHERE BrandAssoc = ?";
+        $data = $this->rows($sql, [$brand]);
+        return $data;
+    }
 }
