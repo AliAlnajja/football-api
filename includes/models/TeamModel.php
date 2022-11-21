@@ -19,7 +19,7 @@ class TeamModel extends BaseModel {
      */
     public function getAll() {
         $sql = "SELECT * FROM teams";
-        $data = $this->rows($sql);
+        $data = $this->paginate($sql);
         return $data;
     }
 

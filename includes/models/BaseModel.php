@@ -10,6 +10,18 @@ class BaseModel {
      * holds a database connection.
      */
     protected $db;
+
+    /**
+     * The index of the current page.
+     * @var int
+     */
+    private $current_page = 1;
+
+    /**
+     * Holds the number of records per page.
+     * @var int
+     */
+    private $records_per_page = 5;
     
     /**
      * Instantiates the BaseModel.
@@ -46,6 +58,32 @@ class BaseModel {
         $this->db = new PDO($dsn, $username, $password, $options);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->db->query("SET NAMES utf8mb4");
+    }
+    
+    /**
+     * Paginates a result set given a page number and number of records per page.
+     * 
+     * @param string $sql the SQL query to be executed.
+     * @param array $args fields filtering options.
+     * @param int $fetchMode 
+     * @return array An array containing the fetched set of records.
+     */
+    protected function paginate($sql, $args = [], $fetchMode = PDO::FETCH_ASSOC) {
+        // 1) Get the number of records that might be returned by the provided query.
+        $total_no_of_records = $this->count($sql, $args);
+        
+        // 2) Configure the paginator.
+        $paginator = new Paginator($this->current_page, $this->records_per_page, $total_no_of_records);
+        $offset = $paginator->getOffset();
+        
+        // 3) Add the LIMIT clause to the query.
+        $sql .= " LIMIT ${offset}, $this->records_per_page";
+        // 4) Get the pagination information.
+        $data = $paginator->getPaginationInfo();
+        // 5) Add the fetched data from the query with the pagination settings. 
+        // The result records are available via the data key in the JSON array. 
+        $data["data"] = $this->run($sql, $args)->fetchAll($fetchMode);
+        return $data;
     }
 
     /**
