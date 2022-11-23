@@ -19,7 +19,7 @@ class CardModel extends BaseModel {
      */
     public function getAll() {
         $sql = "SELECT * FROM card";
-        $data = $this->rows($sql);
+        $data = $this->paginate($sql);
         return $data;
     }
 

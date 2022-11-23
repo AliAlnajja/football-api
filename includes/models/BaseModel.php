@@ -21,7 +21,7 @@ class BaseModel {
      * Holds the number of records per page.
      * @var int
      */
-    private $records_per_page = 5;
+    private $records_per_page = 10;
     
     /**
      * Instantiates the BaseModel.
@@ -312,5 +312,9 @@ class BaseModel {
 
         return $stmt->rowCount();
     }
-
+    
+    public function setPaginationOptions(int $current_page, int $records_per_page): void {
+        $this->current_page = $current_page;
+        $this->records_per_page = $records_per_page;
+    }
 }

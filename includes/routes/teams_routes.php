@@ -9,11 +9,16 @@ require_once __DIR__ . './../models/TeamModel.php';
 
 
 function handleGetAllTeams(Request $request, Response $response, array $args) {
+    $input_page_number = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
+    $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
+    // Instantiate the model.
+    // Set the pagination options.
     $team_info = array();
     
     $response_data = array();
     $response_code = HTTP_OK;
     $team_model = new TeamModel();
+    $team_model->setPaginationOptions($input_page_number, $input_per_page);
 
     $team_info = $team_model->getAll();
         

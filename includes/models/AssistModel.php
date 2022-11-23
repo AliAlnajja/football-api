@@ -19,7 +19,7 @@ class AssistModel extends BaseModel {
      */
     public function getAll() {
         $sql = "SELECT * FROM assist";
-        $data = $this->rows($sql);
+        $data = $this->paginate($sql);
         return $data;
     }
 

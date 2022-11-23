@@ -9,11 +9,15 @@ require_once __DIR__ . './../models/AssistModel.php';
 
 
 function handleGetAllAssists(Request $request, Response $response, array $args) {
+    $input_page_number = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
+    $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
     $assist_info = array();
     
     $response_data = array();
     $response_code = HTTP_OK;
     $assist_model = new AssistModel();
+    $assist_model->setPaginationOptions($input_page_number, $input_per_page);
+
 
     $assist_info = $assist_model->getAll();
         

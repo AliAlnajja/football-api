@@ -19,7 +19,7 @@ class PlayerModel extends BaseModel {
      */
     public function getAll() {
         $sql = "SELECT * FROM player";
-        $data = $this->rows($sql);
+        $data = $this->paginate($sql);
         return $data;
     }
 

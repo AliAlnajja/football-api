@@ -19,7 +19,7 @@ class GoalModel extends BaseModel {
      */
     public function getAll() {
         $sql = "SELECT * FROM goal";
-        $data = $this->rows($sql);
+        $data = $this->paginate($sql);
         return $data;
     }
 
