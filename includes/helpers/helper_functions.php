@@ -23,6 +23,17 @@ function getErrorNotFound() {
 }
 
 /**
+ * Returns an error name and message if the id of the resource does not exists
+ */
+function getSuccessCreated() {
+    $error_data = array(
+        "error:" => "Created",
+        "message:" => "The request was successfully created"
+    );
+    return $error_data;
+}
+
+/**
  * Returns an error if the code is not in an Json format
  */
 function makeCustomJSONError($error_code, $error_message) {

@@ -11,8 +11,13 @@ require_once __DIR__ . './../models/AssistModel.php';
 function handleGetAllAssists(Request $request, Response $response, array $args) {
     $input_page_number = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
     $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
+
+    if($input_page_number === null && $input_per_page === null){
+        $input_page_number = 1;
+        $input_per_page = 10;
+    }
+
     $assist_info = array();
-    
     $response_data = array();
     $response_code = HTTP_OK;
     $assist_model = new AssistModel();

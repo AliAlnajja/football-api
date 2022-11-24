@@ -11,6 +11,12 @@ require_once __DIR__ . './../models/GoalModel.php';
 function handleGetAllGoals(Request $request, Response $response, array $args) {
     $input_page_number = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
     $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
+
+    if($input_page_number === null && $input_per_page === null){
+        $input_page_number = 1;
+        $input_per_page = 10;
+    }
+    
     $goal_info = array();
     
     $response_data = array();

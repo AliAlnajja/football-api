@@ -13,6 +13,10 @@ function handleGetAllTeams(Request $request, Response $response, array $args) {
     $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
     // Instantiate the model.
     // Set the pagination options.
+    if($input_page_number === null && $input_per_page === null){
+        $input_page_number = 1;
+        $input_per_page = 10;
+    }
     $team_info = array();
     
     $response_data = array();
@@ -169,7 +173,12 @@ function handleCreateTeam(Request $request, Response $response) {
 
         $team_model->createTeam($team_record);
     }
+
+    if($response_code === HTTP_CREATED){
+        $response_data = json_encode(getSuccessCreated());
+    }
     
+    $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
 
