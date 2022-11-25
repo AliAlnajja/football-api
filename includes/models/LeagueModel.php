@@ -29,4 +29,18 @@ class LeagueModel extends BaseModel {
         return $data;
     }
 
+    public function createLeague($league){
+        $data = $this->insert($this->table_name, $league) ;
+        return $data;    
+    }
+
+     /**
+     * Delete information about one or more leagues
+     * @param string $league_id: given league
+     */
+    function deleteLeague($league_id){
+        $data = $this->deleteByIds("$this->table_name", "LeagueId", $league_id);
+        return $data;
+    }
+
 }
