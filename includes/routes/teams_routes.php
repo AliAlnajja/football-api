@@ -146,6 +146,7 @@ function handleCreateTeam(Request $request, Response $response) {
     $team_model = new TeamModel();
     $parsed_data = $request->getParsedBody();
     $response_code = HTTP_CREATED;
+    $table = "teams";
 
     $team_id = "";
     $teamName = "";
@@ -171,7 +172,7 @@ function handleCreateTeam(Request $request, Response $response) {
         $team_record = array("TeamId" => $team_id, "Name" => $teamName, "TotalTrophies" => $teamTotalTrop, "FoundedDate" => $teamFD,
             "Country" => $teamCountry, "Value" => $teamValue, "position" => $teamPosition, "ManagerId" => $teamMan, "LeagueId" => $teamLeague);
 
-        $team_model->createTeam($team_record);
+        $team_model->create($table, $team_record);
     }
 
     if($response_code === HTTP_CREATED){
@@ -226,6 +227,7 @@ function handleUpdateTeam(Request $request, Response $response) {
     $response_data = array();
     $response_code = HTTP_OK;
     $parsed_data = $request->getParsedBody();
+    $table = "teams";
 
     $team_id = "";
     $teamName = "";
@@ -252,7 +254,7 @@ function handleUpdateTeam(Request $request, Response $response) {
             "Country" => $teamCountry, "Value" => $teamValue, "position" => $teamPosition, "ManagerId" => $teamMan, "LeagueId" => $teamLeague);
 
         $team_condition = array("TeamId" => $team_id);
-        $team_model->updateTeam($team_record, $team_condition);
+        $team_model->updateTable($table, $team_record, $team_condition);
     }
     $response_data = json_encode(getSuccessUpdate());
     $response->getBody()->write($response_data);

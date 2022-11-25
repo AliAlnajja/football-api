@@ -83,6 +83,7 @@ function handleCreatePlayer(Request $request, Response $response) {
     $player_model = new PlayerModel();
     $parsed_data = $request->getParsedBody();
     $response_code = HTTP_CREATED;
+    $table = "player";
 
     $player_id = "";
     $playerName = "";
@@ -115,7 +116,7 @@ function handleCreatePlayer(Request $request, Response $response) {
             "TeamId" => $teamId, "Wages" => $playerWage, "Height" => $playerHeight, "Weight" => $playerWeight, "P_Condition" => $playerCondition,
             "BrandAssoc" => $brandAssociation, "Value" => $playerValue);
 
-        $player_model->createPlayer($player_record);
+        $player_model->create($table, $player_record);
     }
 
     if($response_code === HTTP_CREATED){
@@ -170,6 +171,7 @@ function handleUpdatePlayer(Request $request, Response $response) {
     $response_data = array();
     $response_code = HTTP_OK;
     $parsed_data = $request->getParsedBody();
+    $table = "player";
 
     $player_id = "";
     $playerName = "";
@@ -202,7 +204,7 @@ function handleUpdatePlayer(Request $request, Response $response) {
         "BrandAssoc" => $brandAssociation, "Value" => $playerValue);
 
         $player_condition = array("PlayerId" => $player_id);
-        $player_Model->updatePlayer($player_record, $player_condition);
+        $player_Model->updateTable($table, $player_record, $player_condition);
     }
     $response_data = json_encode(getSuccessUpdate());
     $response->getBody()->write($response_data);

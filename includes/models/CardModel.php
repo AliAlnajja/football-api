@@ -34,25 +34,4 @@ class CardModel extends BaseModel {
         $data = $this->rows($sql, [$type]);
         return $data;
     }
-
-    /**
-     * Create a new card      
-     * @param array $data an array that has the values of the new card 
-     * @return array An array containing the new card.
-     */
-    public function createCard($data) {
-        $data = $this->insert("card",$data);
-        return $data;
-    }
-
-    /**
-     * Update an existing card.       
-     * @param array $data an array that has the new values of the existing card
-     * @param array $where an array that holds the conditions about a specific card 
-     * @return array An array containing the returned data
-     */
-    public function updateCard($data, $where) {
-        $data = $this->update("card", $data, $where);
-        return $data;
-    }
 }

@@ -42,16 +42,6 @@ class TeamModel extends BaseModel {
     }
 
     /**
-     * Create a new team      
-     * @param array $data an array that has the values of the new team 
-     * @return array An array containing the new team.
-     */
-    public function createTeam($data) {
-        $data = $this->insert("teams",$data);
-        return $data;
-    }
-
-    /**
      * Delete a specifc team.       
      * @param int $team_id the id that specifies the team that will be delete
      * @return array An array containing the returned data
@@ -59,17 +49,6 @@ class TeamModel extends BaseModel {
     public function deleteTeam($team_id) {
         $sql = "DELETE FROM teams WHERE TeamId = :TeamId";
         $data = $this->run($sql, [":TeamId" => $team_id . "%"])->execute();
-        return $data;
-    }
-
-    /**
-     * Update an existing team.       
-     * @param array $data an array that has the new values of the existing team
-     * @param array $where an array that holds the conditions about a specific team 
-     * @return array An array containing the returned data
-     */
-    public function updateTeam($data, $where) {
-        $data = $this->update("teams", $data, $where);
         return $data;
     }
 }

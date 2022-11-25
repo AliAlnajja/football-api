@@ -317,4 +317,25 @@ class BaseModel {
         $this->current_page = $current_page;
         $this->records_per_page = $records_per_page;
     }
+
+    /**
+     * Create a new record      
+     * @param array $data an array that has the values of the new record 
+     * @return array An array containing the new record.
+     */
+    public function create($table, $data) {
+        $data = $this->insert($table, $data);
+        return $data;
+    }
+
+    /**
+     * Update an existing record.       
+     * @param array $data an array that has the new values of the existing record
+     * @param array $where an array that holds the conditions about a specific record 
+     * @return array An array containing the returned data
+     */
+    public function updateTable($table, $data, $where) {
+        $data = $this->update($table, $data, $where);
+        return $data;
+    }
 }

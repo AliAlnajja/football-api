@@ -24,7 +24,6 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $app->setBasePath("/football-api");
 
 //-- Step 5) Include the files containing the definitions of the callbacks.
-require_once './includes/routes/artists_routes.php';
 require_once './includes/routes/customers_routes.php';
 require_once './includes/routes/teams_routes.php';
 require_once './includes/routes/assists_routes.php';
@@ -70,6 +69,10 @@ $app->put("/players", "handleUpdatePlayer");
 
 $app->post("/cards", "handleCreateCard");
 $app->put("/cards", "handleUpdateCard");
+
+$app->post("/assists", "handleCreateAssist");
+$app->put("/assists", "handleUpdateAssist");
+
 
 // Run the app.
 $app->run();

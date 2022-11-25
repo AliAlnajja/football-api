@@ -81,6 +81,7 @@ function handleCreateCard(Request $request, Response $response) {
     $card_model = new CardModel();
     $parsed_data = $request->getParsedBody();
     $response_code = HTTP_CREATED;
+    $table = "card";
 
     $CardId = "";
     $PlayerId = "";
@@ -97,7 +98,7 @@ function handleCreateCard(Request $request, Response $response) {
 
         $card_record = array("CardId" => $CardId, "PlayerId" => $PlayerId, "Total" => $Total, "CardType" => $CardType);
 
-        $card_model->createCard($card_record);
+        $card_model->create($table, $card_record);
     }
 
     if($response_code === HTTP_CREATED){
@@ -113,6 +114,7 @@ function handleUpdateCard(Request $request, Response $response) {
     $response_data = array();
     $response_code = HTTP_OK;
     $parsed_data = $request->getParsedBody();
+    $table = "card";
 
     $CardId = "";
     $PlayerId = "";
@@ -129,7 +131,7 @@ function handleUpdateCard(Request $request, Response $response) {
         $card_record = array("PlayerId" => $PlayerId, "Total" => $Total, "CardType" => $CardType);
 
         $card_condition = array("CardId" => $CardId);
-        $card_model->updateCard($card_record, $card_condition);
+        $card_model->updateTable($table, $card_record, $card_condition);
     }
     $response_data = json_encode(getSuccessUpdate());
     $response->getBody()->write($response_data);

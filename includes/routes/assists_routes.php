@@ -71,3 +71,60 @@ function handleGetAssistsFromPlayer(Request $request, Response $response, array 
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleCreateAssist(Request $request, Response $response) {
+    $assist_model = new AssistModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+    $table = "assist";
+
+    $AssistId = "";
+    $PlayerId = "";
+    $Amount = "";
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_assist = $parsed_data[$index];
+        $AssistId = $single_assist["AssistId"];
+        $PlayerId = $single_assist["PlayerId"];
+        $Amount = $single_assist["Amount"];
+
+        $assist_record = array("AssistId" => $AssistId, "PlayerId" => $PlayerId, "Amount" => $Amount);
+
+        $assist_model->create($table, $assist_record);
+    }
+
+    if($response_code === HTTP_CREATED){
+        $response_data = json_encode(getSuccessCreated());
+    }
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+
+function handleUpdateAssist(Request $request, Response $response) {
+    $assist_model = new AssistModel();
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $parsed_data = $request->getParsedBody();
+    $table = "assist";
+
+    $AssistId = "";
+    $PlayerId = "";
+    $Amount = "";
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_assist = $parsed_data[$index];
+        $AssistId = $single_assist["AssistId"];
+        $PlayerId = $single_assist["PlayerId"];
+        $Amount = $single_assist["Amount"];
+
+        $assist_record = array( "PlayerId" => $PlayerId, "Amount" => $Amount);
+
+
+        $assist_condition = array("AssistId" => $AssistId,);
+        $assist_model->updateTable($table, $assist_record, $assist_condition);
+    }
+    $response_data = json_encode(getSuccessUpdate());
+    $response->getBody()->write($response_data);
+    return $response;
+}
