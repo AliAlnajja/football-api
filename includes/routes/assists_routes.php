@@ -72,6 +72,7 @@ function handleGetAssistsFromPlayer(Request $request, Response $response, array 
     return $response->withStatus($response_code);
 }
 
+<<<<<<< Updated upstream
 function handleCreateAssist(Request $request, Response $response) {
     $assist_model = new AssistModel();
     $parsed_data = $request->getParsedBody();
@@ -97,10 +98,49 @@ function handleCreateAssist(Request $request, Response $response) {
         $response_data = json_encode(getSuccessCreated());
     }
     
+=======
+//Create
+function handleCreateAssist(Request $request, Response $response,  array $args) {
+    $assist_model = new AssistModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_assist = $parsed_data[$index];
+
+        if($assist_model->getAssistsById($single_assist["AssistId"])){
+            $response_data = makeCustomJSONError("Error", "The specific assist is already existed");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        $assist_id = $single_assist["AssistId"];
+        $player_id = $single_assist["PlayerId"];
+        $assistAmount = $single_assist["Amount"];
+
+
+        $assist_record = array(
+            "AssistId" => $assist_id, 
+            "PlayerId" => $player_id, 
+            "Amount " => $assistAmount 
+        );
+
+
+        $query_result = $assist_model->createAssist($assist_record);
+        if ($query_result != 0) {
+            $response_data = makeCustomJSONError("Error", "Input Assist can not be created");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+    }
+
+    $response_data = json_encode(getSuccessCreated());
+>>>>>>> Stashed changes
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
 
+<<<<<<< Updated upstream
 function handleUpdateAssist(Request $request, Response $response) {
     $assist_model = new AssistModel();
     $response_data = array();
@@ -128,3 +168,43 @@ function handleUpdateAssist(Request $request, Response $response) {
     $response->getBody()->write($response_data);
     return $response;
 }
+=======
+//Update
+function handleUpdateAssist(Request $request, Response $response,  array $args) {
+    $assist_model = new AssistModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_assist = $parsed_data[$index];
+
+        if(!$assist_model->getAssistsById($single_assist["AssistId"])){
+            $response_data = makeCustomJSONError("Error", "The specific assist do not existed");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        $assist_id = $single_assist["AssistId"];
+        $player_id = $single_assist["PlayerId"];
+        $assistAmount = $single_assist["Amount"];
+
+
+        $assist_record = array(
+            "PlayerId" => $player_id, 
+            "Amount " => $assistAmount 
+        );
+
+        $query_condition = array("AssistId" => $assist_id);
+        $query_result = $assist_model->updateAssist($assist_record, $query_condition);
+        if (!$query_result) {
+            $response_data = makeCustomJSONError("Error", "Input Assist can not be created");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+    }
+
+    $response_data = json_encode(getSuccessUpdate());
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+>>>>>>> Stashed changes
