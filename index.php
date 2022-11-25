@@ -70,29 +70,9 @@ $app->put("/players", "handleUpdatePlayer");
 $app->post("/cards", "handleCreateCard");
 $app->put("/cards", "handleUpdateCard");
 
-<<<<<<< Updated upstream
 $app->post("/assists", "handleCreateAssist");
 $app->put("/assists", "handleUpdateAssist");
 
 
-=======
-$app->post("/managers", "handleCreateManager");
-$app->put("/managers", "handleUpdateManager");
-$app->delete("/managers/{manager_id}", "handleDeleteManager");
-
-$app->post("/leagues", "handleCreateLeague");
-$app->delete("/leagues/{league_id}", "handleDeleteLeague");
-
-$app->post("/goals", "handleCreateGoal");
-$app->put("/goals", "handleUpdateGoal");
-
-$app->post("/fixtures", "handleCreateFixture");
-$app->put("/fixtures", "handleUpdateFixture");
-$app->delete("/fixtures/{fixture_id}", "handleDeleteFixture");
-
-$app->post("/assists", "handleCreateAssist");
-$app->put("/assists", "handleUpdateAssist");
-
->>>>>>> Stashed changes
 // Run the app.
 $app->run();
