@@ -64,21 +64,12 @@ $app->put("/teams", "handleUpdateTeam");
 $app->get("/teams/{team_id}", "handleGetTeamById");
 $app->delete("/teams/{team_id}", "handleDeleteTeam");
 
+$app->post("/players", "handleCreatePlayer");
+$app->delete("/players/{player_id}", "handleDeletePlayer");
+$app->put("/players", "handleUpdatePlayer");
 
-
-
-// $app->get("/artists", "handleGetAllArtists");
-// $app->get("/artists/{artist_id}", "handleGetArtistById");
-// $app->get("/artists/{artist_id}/albums", "handleGetAlbumsByArtist");
-// $app->get("/artists/{artist_id}/albums/{album_id}/tracks", "handleGetSpecificTracks");
-// $app->post("/artists", "handleCreateArtist");
-// $app->put("/artists", "handleUpdateArtist");
-// $app->delete("/artists/{artist_id}", "handleDeleteArtist");
-
-// customer callbacks (4)
-// $app->get("/customers/{customer_id}/invoices", "handleGetTracksPurchased");
-// $app->get("/customers", "handleGetAllCustomers");
-// $app->delete("/customers/{customer_id}", "handleDeleteCustomer");
+$app->post("/cards", "handleCreateCard");
+$app->put("/cards", "handleUpdateCard");
 
 // Run the app.
 $app->run();

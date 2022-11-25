@@ -79,3 +79,132 @@ function handleGetPlayerById(Request $request, Response $response, array $args) 
     return $response->withStatus($response_code);
 }
 
+function handleCreatePlayer(Request $request, Response $response) {
+    $player_model = new PlayerModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+
+    $player_id = "";
+    $playerName = "";
+    $playerAge = "";
+    $playerPosition = "";
+    $teamId = "";
+    $playerWage = "";
+    $playerHeight = "";
+    $playerWeight = "";
+    $playerCondition = "";
+    $brandAssociation = "";
+    $playerValue = "";
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_player = $parsed_data[$index];
+        $player_id = $single_player["PlayerId"];
+        $playerName = $single_player["Name"];
+        $playerAge = $single_player["Age"];
+        $playerPosition = $single_player["position"];
+        $teamId = $single_player["TeamId"];
+        $playerWage = $single_player["Wages"];
+        $playerHeight = $single_player["Height"];
+        $playerWeight = $single_player["Weight"];
+        $playerCondition = $single_player["P_Condition"];
+        $brandAssociation = $single_player["BrandAssoc"];
+        $playerValue = $single_player["Value"];
+
+
+        $player_record = array("PlayerId" => $player_id, "Name" => $playerName, "Age" => $playerAge, "position" => $playerPosition,
+            "TeamId" => $teamId, "Wages" => $playerWage, "Height" => $playerHeight, "Weight" => $playerWeight, "P_Condition" => $playerCondition,
+            "BrandAssoc" => $brandAssociation, "Value" => $playerValue);
+
+        $player_model->createPlayer($player_record);
+    }
+
+    if($response_code === HTTP_CREATED){
+        $response_data = json_encode(getSuccessCreated());
+    }
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+
+// Delete a given player
+function handleDeletePlayer(Request $request, Response $response, array $args) {
+    $team_info = array();
+    
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $player_model = new PlayerModel();
+
+    $player_id = $args["player_id"];
+    
+    $player_count = $player_model->getPlayerById($player_id);
+    if (!$player_count){
+        $response_data = json_encode(getErrorNotFound());
+        $response_code = HTTP_NOT_FOUND;
+        $response->getBody()->write($response_data);
+        return $response->withStatus($response_code);
+    } 
+
+    if (isset($player_id)) {
+        $player_model->deletePlayer($player_id);
+    } 
+    else {
+        $response_data = makeCustomJSONError("resourceNotFound", "You must specify an team id!");
+        $response->getBody()->write($response_data);
+        return $response->withStatus(HTTP_NOT_FOUND);
+    }    
+    
+    $requested_format = $request->getHeader('Accept');  
+    if ($requested_format[0] === "application/json") {
+        $response_data = json_encode(getSuccessDelete());
+    } else {
+        $response_data = json_encode(getErrorUnsupportedFormat());
+        $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
+    }
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+
+function handleUpdatePlayer(Request $request, Response $response) {
+    $player_Model = new PlayerModel();
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $parsed_data = $request->getParsedBody();
+
+    $player_id = "";
+    $playerName = "";
+    $playerAge = "";
+    $playerPosition = "";
+    $teamId = "";
+    $playerWage = "";
+    $playerHeight = "";
+    $playerWeight = "";
+    $playerCondition = "";
+    $brandAssociation = "";
+    $playerValue = "";
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_player = $parsed_data[$index];
+        $player_id = $single_player["PlayerId"];
+        $playerName = $single_player["Name"];
+        $playerAge = $single_player["Age"];
+        $playerPosition = $single_player["position"];
+        $teamId = $single_player["TeamId"];
+        $playerWage = $single_player["Wages"];
+        $playerHeight = $single_player["Height"];
+        $playerWeight = $single_player["Weight"];
+        $playerCondition = $single_player["P_Condition"];
+        $brandAssociation = $single_player["BrandAssoc"];
+        $playerValue = $single_player["Value"];
+
+        $player_record = array("Name" => $playerName, "Age" => $playerAge, "position" => $playerPosition,
+        "TeamId" => $teamId, "Wages" => $playerWage, "Height" => $playerHeight, "Weight" => $playerWeight, "P_Condition" => $playerCondition,
+        "BrandAssoc" => $brandAssociation, "Value" => $playerValue);
+
+        $player_condition = array("PlayerId" => $player_id);
+        $player_Model->updatePlayer($player_record, $player_condition);
+    }
+    $response_data = json_encode(getSuccessUpdate());
+    $response->getBody()->write($response_data);
+    return $response;
+}

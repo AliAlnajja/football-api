@@ -23,15 +23,38 @@ function getErrorNotFound() {
 }
 
 /**
- * Returns an error name and message if the id of the resource does not exists
+ * Returns an error name and message if the the request was successfully created 
  */
 function getSuccessCreated() {
     $error_data = array(
-        "error:" => "Created",
+        "Status Description:" => "Created",
         "message:" => "The request was successfully created"
     );
     return $error_data;
 }
+
+/**
+ * Returns an error name and message if the the request was successfully update 
+ */
+function getSuccessUpdate() {
+    $error_data = array(
+        "Status Description:" => "Updated",
+        "message:" => "The request was successfully updated"
+    );
+    return $error_data;
+}
+
+/**
+ * Returns an error name and message if the the request was successfully deleted 
+ */
+function getSuccessDelete() {
+    $error_data = array(
+        "Status Description:" => "Deleted",
+        "message:" => "The request was successfully deleted"
+    );
+    return $error_data;
+}
+
 
 /**
  * Returns an error if the code is not in an Json format

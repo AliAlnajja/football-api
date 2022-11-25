@@ -40,4 +40,36 @@ class PlayerModel extends BaseModel {
         $data = $this->rows($sql, [$brand]);
         return $data;
     }
+
+    /**
+     * Create a new player      
+     * @param array $data an array that has the values of the new player 
+     * @return array An array containing the new player.
+     */
+    public function createPlayer($data) {
+        $data = $this->insert("player",$data);
+        return $data;
+    }
+
+    /**
+     * Delete a specifc player.       
+     * @param int $player_id the id that specifies the player that will be delete
+     * @return array An array containing the returned data
+     */
+    public function deletePlayer($player_id) {
+        $sql = "DELETE FROM player WHERE PlayerId = :PlayerId";
+        $data = $this->run($sql, [":PlayerId" => $player_id . "%"])->execute();
+        return $data;
+    }
+
+    /**
+     * Update an existing player.       
+     * @param array $data an array that has the new values of the existing player
+     * @param array $where an array that holds the conditions about a specific player 
+     * @return array An array containing the returned data
+     */
+    public function updatePlayer($data, $where) {
+        $data = $this->update("player", $data, $where);
+        return $data;
+    }
 }

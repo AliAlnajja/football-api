@@ -76,3 +76,62 @@ function handleGetCardsFromPlayer(Request $request, Response $response, array $a
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+function handleCreateCard(Request $request, Response $response) {
+    $card_model = new CardModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+
+    $CardId = "";
+    $PlayerId = "";
+    $Total = "";
+    $CardType = "";
+
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_card = $parsed_data[$index];
+        $CardId = $single_card["CardId"];
+        $PlayerId = $single_card["PlayerId"];
+        $Total = $single_card["Total"];
+        $CardType = $single_card["CardType"];
+
+        $card_record = array("CardId" => $CardId, "PlayerId" => $PlayerId, "Total" => $Total, "CardType" => $CardType);
+
+        $card_model->createCard($card_record);
+    }
+
+    if($response_code === HTTP_CREATED){
+        $response_data = json_encode(getSuccessCreated());
+    }
+    
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+
+function handleUpdateCard(Request $request, Response $response) {
+    $card_model = new CardModel();
+    $response_data = array();
+    $response_code = HTTP_OK;
+    $parsed_data = $request->getParsedBody();
+
+    $CardId = "";
+    $PlayerId = "";
+    $Total = "";
+    $CardType = "";
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_card = $parsed_data[$index];
+        $CardId = $single_card["CardId"];
+        $PlayerId = $single_card["PlayerId"];
+        $Total = $single_card["Total"];
+        $CardType = $single_card["CardType"];
+
+        $card_record = array("PlayerId" => $PlayerId, "Total" => $Total, "CardType" => $CardType);
+
+        $card_condition = array("CardId" => $CardId);
+        $card_model->updateCard($card_record, $card_condition);
+    }
+    $response_data = json_encode(getSuccessUpdate());
+    $response->getBody()->write($response_data);
+    return $response;
+}

@@ -211,7 +211,7 @@ function handleDeleteTeam(Request $request, Response $response, array $args) {
     
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === "application/json") {
-        $response_data = json_encode("The team  $team_id was successfully deleted");
+        $response_data = json_encode(getSuccessDelete());
     } else {
         $response_data = json_encode(getErrorUnsupportedFormat());
         $response_code = HTTP_UNSUPPORTED_MEDIA_TYPE;
@@ -223,6 +223,8 @@ function handleDeleteTeam(Request $request, Response $response, array $args) {
 
 function handleUpdateTeam(Request $request, Response $response) {
     $team_model = new TeamModel();
+    $response_data = array();
+    $response_code = HTTP_OK;
     $parsed_data = $request->getParsedBody();
 
     $team_id = "";
@@ -252,6 +254,7 @@ function handleUpdateTeam(Request $request, Response $response) {
         $team_condition = array("TeamId" => $team_id);
         $team_model->updateTeam($team_record, $team_condition);
     }
-    // $response->getBody()->write("The team was successfully updated\r\n Artist Id: ".$artist_id."\r\nName: ".$artistName);
+    $response_data = json_encode(getSuccessUpdate());
+    $response->getBody()->write($response_data);
     return $response;
 }
