@@ -70,7 +70,6 @@ $app->put("/players", "handleUpdatePlayer");
 $app->post("/cards", "handleCreateCard");
 $app->put("/cards", "handleUpdateCard");
 
-<<<<<<< HEAD
 $app->post("/managers", "handleCreateManager");
 $app->put("/managers", "handleUpdateManager");
 $app->delete("/managers/{manager_id}", "handleDeleteManager");
@@ -88,11 +87,5 @@ $app->delete("/fixtures/{fixture_id}", "handleDeleteFixture");
 $app->post("/assists", "handleCreateAssist");
 $app->put("/assists", "handleUpdateAssist");
 
-=======
-$app->post("/assists", "handleCreateAssist");
-$app->put("/assists", "handleUpdateAssist");
-
-
->>>>>>> parent of 26b31df (Crud operations for manager league fixtures goals)
 // Run the app.
 $app->run();

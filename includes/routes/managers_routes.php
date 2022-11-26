@@ -67,3 +67,123 @@ function handleGetManagerById(Request $request, Response $response, array $args)
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
 }
+
+//Create
+function handleCreateManager(Request $request, Response $response,  array $args) {
+    $manager_model = new ManagerModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_manager = $parsed_data[$index];
+
+        if($manager_model->getManagerById($single_manager["ManagerId"])){
+            $response_data = makeCustomJSONError("Error", "The specific manager is already existed");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        $manager_id = $single_manager["ManagerId"];
+        $managerName = $single_manager["Name"];
+        $managerAge = $single_manager["Age"];
+        $managerContract = $single_manager["contract"];
+        $managerTrophyCabinet = $single_manager["TrophyCabinet"];
+        $managerNumExp = $single_manager["NumExp"];
+        $teamId = $single_manager["TeamId"];
+
+
+        $manager_record = array(
+            "ManagerId" => $manager_id, 
+            "Name" => $managerName, 
+            "Age" => $managerAge, 
+            "contract" => $managerContract,
+            "TrophyCabinet" => $managerTrophyCabinet, 
+            "NumExp" => $managerNumExp, 
+            "TeamId" => $teamId);
+
+
+        $query_result = $manager_model->createManager($manager_record);
+        if (!$query_result) {
+            $response_data = makeCustomJSONError("Error", "Input Manager can not be created");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+    }
+
+    $response_data = json_encode(getSuccessCreated());
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+
+//Update
+function handleUpdateManager(Request $request, Response $response,  array $args) {
+    $manager_model = new ManagerModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_CREATED;
+
+    for ($index = 0; $index < count($parsed_data); $index++){
+        $single_manager = $parsed_data[$index];
+
+        if(!$manager_model->getManagerById($single_manager["ManagerId"])){
+            $response_data = makeCustomJSONError("Error", "The specific manager do not existed");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        $managerName = $single_manager["Name"];
+        $managerAge = $single_manager["Age"];
+        $managerContract = $single_manager["contract"];
+        $managerTrophyCabinet = $single_manager["TrophyCabinet"];
+        $managerNumExp = $single_manager["NumExp"];
+        $teamId = $single_manager["TeamId"];
+
+
+        $manager_record = array(
+            "Name" => $managerName, 
+            "Age" => $managerAge, 
+            "contract" => $managerContract,
+            "TrophyCabinet" => $managerTrophyCabinet, 
+            "NumExp" => $managerNumExp, 
+            "TeamId" => $teamId);
+
+        $query_condition = array("ManagerId" => $single_manager["ManagerId"]);    
+        $query_result = $manager_model->updateManager($manager_record, $query_condition);
+        if (!$query_result) {
+            $response_data = makeCustomJSONError("Error", "Input Manager can not be created");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+    }
+
+    $response_data = json_encode(getSuccessUpdate());
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+
+//Delete
+function handleDeleteManager(Request $request, Response $response,  array $args) {
+    $manager_model = new ManagerModel();
+    $parsed_data = $request->getParsedBody();
+    $response_code = HTTP_OK;
+    $manager_id = $args["manager_id"];
+
+    if(isset($manager_id)){
+        if(!$manager_model->getManagerById($manager_id)){
+            $response_data = makeCustomJSONError("Error", "The specific manager do not existed");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+
+        $query_result = $manager_model->deleteManager($manager_id);
+        if (!$query_result) {
+            $response_data = makeCustomJSONError("Error", "The specific manager can not be delete");
+            $response->getBody()->write($response_data);
+            return $response->withStatus(HTTP_METHOD_NOT_ALLOWED);
+        }
+    }
+
+    $response_data = json_encode(getSuccessDelete());
+    $response->getBody()->write($response_data);
+    return $response->withStatus($response_code);
+}
+

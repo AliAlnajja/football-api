@@ -28,4 +28,21 @@ class AssistModel extends BaseModel {
         $data = $this->run($sql, [$player_id])->fetch();
         return $data;
     }
+
+    public function getAssistsById($assist_id) {
+        $sql = "SELECT * FROM assist WHERE AssistId = ?";
+        $data = $this->run($sql, [$assist_id])->fetch();
+        return $data;
+    }
+
+    public function createAssist($assist){
+        $data = $this->insert($this->table_name, $assist) ;
+        return $data;    
+    }
+
+
+    function updateAssist($assist, $where){
+        $data = $this->update("$this->table_name", $assist, $where);
+        return $data;
+    }
 }
