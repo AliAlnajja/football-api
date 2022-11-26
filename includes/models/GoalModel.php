@@ -28,22 +28,4 @@ class GoalModel extends BaseModel {
         $data = $this->run($sql, [$player_id])->fetch();
         return $data;
     }
-
-    public function getGoalsById($goal_id) {
-        $sql = "SELECT * FROM goal WHERE GoalId = ?";
-        $data = $this->run($sql, [$goal_id])->fetch();
-        return $data;
-    }
-
-
-    public function createGoal($goal){
-        $data = $this->insert($this->table_name, $goal) ;
-        return $data;    
-    }
-
-
-    function updateGoal($goal, $where){
-        $data = $this->update("$this->table_name", $goal, $where);
-        return $data;
-    }
 }

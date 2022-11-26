@@ -29,35 +29,9 @@ class FixtureModel extends BaseModel {
         return $data;
     }
 
-    public function getFixtureById($fixture_id) {
-        $sql = "SELECT * FROM fixture WHERE FixtureId = ?";
-        $data = $this->run($sql, [$fixture_id])->fetch();
-        return $data;
-    }
-
     public function getFixturesByWeather($weather) {
         $sql = "SELECT * FROM fixture WHERE Weather_Cond = ?";
         $data = $this->rows($sql, [$weather]);
-        return $data;
-    }
-
-    public function createFixture($fixture){
-        $data = $this->insert($this->table_name, $fixture) ;
-        return $data;    
-    }
-
-
-    function updateFixture($fixture, $where){
-        $data = $this->update("$this->table_name", $fixture, $where);
-        return $data;
-    }
-
-     /**
-     * Delete information about one or more fixtures
-     * @param string $fixture_id: given fixture
-     */
-    function deleteFixture($fixture_id){
-        $data = $this->deleteByIds("$this->table_name", "FixtureId", $fixture_id);
         return $data;
     }
 }

@@ -260,6 +260,3 @@ function handleUpdateTeam(Request $request, Response $response) {
     $response->getBody()->write($response_data);
     return $response;
 }
-
-
-
