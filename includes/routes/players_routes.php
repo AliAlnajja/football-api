@@ -117,19 +117,15 @@ function handleCreatePlayer(Request $request, Response $response) {
             "TeamId" => $teamId, "Wages" => $playerWage, "Height" => $playerHeight, "Weight" => $playerWeight, "P_Condition" => $playerCondition,
             "BrandAssoc" => $brandAssociation, "Value" => $playerValue);
 
-<<<<<<< Updated upstream
         $player_model->create($table, $player_record);
     }
-=======
-       
->>>>>>> Stashed changes
 
         $query_result =  $player_model->createPlayer($player_record);
         if (!$query_result) {
             $response_code == HTTP_METHOD_NOT_ALLOWED;
             $response_data = makeCustomJSONError("Error", "Input Manager can not be created");
         }
-    }
+    
     
     $response->getBody()->write($response_data);
     return $response->withStatus($response_code);
