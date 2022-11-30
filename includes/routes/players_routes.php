@@ -6,6 +6,25 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/PlayerModel.php';
+// require_once __DIR__ . './../../controllers/PlayerInfoController.php';
+require_once './controllers/PlayerInfoController.php';
+// require_once './helpers/WebServiceInvoker.php';
+
+function handleCompositeResource() {
+    $playerInfo_and_players = Array();
+
+    $playerInfo = new PlayerInfoController();
+    $player = $playerInfo->getplayerInfo();
+
+    $player_model = new PlayerModel();
+    $players = $player_model->getAll();
+
+    $playerInfo_and_players["playersInfo"] = $player;
+    $playerInfo_and_players["players"] = $players;
+    $jsonData = json_encode($playerInfo_and_players, JSON_INVALID_UTF8_SUBSTITUTE);
+    echo $jsonData;
+}
+
 
 
 function handleGetAllPlayers(Request $request, Response $response, array $args) {

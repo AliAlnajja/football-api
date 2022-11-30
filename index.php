@@ -36,6 +36,7 @@ require_once './includes/routes/participations_routes.php';
 require_once './includes/routes/players_routes.php';
 require_once './includes/routes/stadiums_routes.php';
 
+$app->get("/playersAndPlayerInfo", "handleCompositeResource");
 $app->get("/teams", "handleGetAllTeams");
 $app->get("/assists", "handleGetAllAssists");
 $app->get("/cards", "handleGetAllCards");
