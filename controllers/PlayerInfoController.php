@@ -23,7 +23,7 @@ class PlayerInfoController extends WebServiceInvoker {
      */
     function getplayerInfo() {
         $playersInfo = Array();
-        $resource_uri = "https://www.thesportsdb.com/api/v1/json/2/searchplayers.php";
+        $resource_uri = "https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?t=arsenal&p=jesus";
         $playersInfoData = $this->invoke($resource_uri);
 
         if (!empty($playersInfoData)) {
