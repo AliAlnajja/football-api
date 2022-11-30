@@ -10,11 +10,12 @@ require_once __DIR__ . './../models/PlayerModel.php';
 require_once './controllers/PlayerInfoController.php';
 // require_once './helpers/WebServiceInvoker.php';
 
-function handleCompositeResource() {
+function handleCompositeResource(Request $request, Response $response, array $args) {
     $playerInfo_and_players = Array();
+    $response_code = HTTP_OK;
 
     $playerInfo = new PlayerInfoController();
-    $player = $playerInfo->getplayerInfo();
+    $player = $playerInfo->getPlayerInfo();
 
     $player_model = new PlayerModel();
     $players = $player_model->getAll();
@@ -22,7 +23,10 @@ function handleCompositeResource() {
     $playerInfo_and_players["playersInfo"] = $player;
     $playerInfo_and_players["players"] = $players;
     $jsonData = json_encode($playerInfo_and_players, JSON_INVALID_UTF8_SUBSTITUTE);
-    echo $jsonData;
+    // echo $jsonData;
+    // var_dump($jsonData); exit;
+    $response->getBody()->write($jsonData);
+    return $response->withStatus($response_code);
 }
 
 
