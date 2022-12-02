@@ -45,17 +45,7 @@ class PlayerInfoController extends WebServiceInvoker {
                 $playersInfo[$index]["strAgent"] = $playersInfoData["player"][$index]["strAgent"];
                 $playersInfo[$index]["strBirthLocation"] = $playersInfoData["player"][$index]["strBirthLocation"];
                 $playersInfo[$index]["strNationality"] = $playersInfoData["player"][$index]["strNationality"];
-                
-
-                //$playerInfo["strPlayer"] = $playersInfoData["player"][0]["strPlayer"];
-                //var_dump($playerInfo); exit;
-                // $playersInfo[$index]["isbn"] = $playerInfo["isbn"];
-                // $playersInfo[$index]["authors"] = $playerInfo["authors"];
-                // $playersInfo[$index]["mediaType"] = $playerInfo["mediaType"];
-                // $playersInfo[$index]["country"] = $playerInfo["country"];
-                // $playersInfo[$index]["released"] = $playerInfo["released"];
-                //
-               $index++;
+                $index++;
             }
         }
         return $playersInfo;
