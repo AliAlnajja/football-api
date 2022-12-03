@@ -45,6 +45,18 @@ class PlayerInfoController extends WebServiceInvoker {
                 $playersInfo[$index]["strAgent"] = $playersInfoData["player"][$index]["strAgent"];
                 $playersInfo[$index]["strBirthLocation"] = $playersInfoData["player"][$index]["strBirthLocation"];
                 $playersInfo[$index]["strNationality"] = $playersInfoData["player"][$index]["strNationality"];
+                $playersInfo[$index]["dateBorn"] = $playersInfoData["player"][$index]["dateBorn"];
+                $playersInfo[$index]["strNumber"] = $playersInfoData["player"][$index]["strNumber"];
+                $playersInfo[$index]["strSigning"] = $playersInfoData["player"][$index]["strSigning"];
+                $playersInfo[$index]["strKit"] = $playersInfoData["player"][$index]["strKit"];
+                $playersInfo[$index]["strStatus"] = $playersInfoData["player"][$index]["strStatus"];
+                $playersInfo[$index]["strHeight"] = $playersInfoData["player"][$index]["strHeight"];
+                $playersInfo[$index]["strGender"] = $playersInfoData["player"][$index]["strGender"];
+                $playersInfo[$index]["strSide"] = $playersInfoData["player"][$index]["strSide"];
+                $playersInfo[$index]["strPosition"] = $playersInfoData["player"][$index]["strPosition"];
+                $playersInfo[$index]["strTwitter"] = $playersInfoData["player"][$index]["strTwitter"];
+                $playersInfo[$index]["strInstagram"] = $playersInfoData["player"][$index]["strInstagram"];
+                $playersInfo[$index]["strFacebook"] = $playersInfoData["player"][$index]["strFacebook"];
                 $index++;
             }
         }
