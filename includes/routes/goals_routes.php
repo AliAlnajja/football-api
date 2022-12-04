@@ -24,8 +24,14 @@ function handleGetAllGoals(Request $request, Response $response, array $args) {
     $goal_model = new GoalModel();
     $goal_model->setPaginationOptions($input_page_number, $input_per_page);
 
-
-    $goal_info = $goal_model->getAll();
+    $filter_params = $request->getQueryParams();
+    if(isset($filter_params["amount"])) {
+        //get goals by amount
+        $goal_info = $goal_model->getGoalsByAmount($filter_params["amount"]);
+    }
+    else {
+        $goal_info = $goal_model->getAll();
+    }
         
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {

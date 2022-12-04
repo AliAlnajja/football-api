@@ -28,4 +28,16 @@ class StadiumModel extends BaseModel {
         $data = $this->run($sql, [$team_id])->fetch();
         return $data;
     }
+
+    public function getStadiumByName($name) {
+        $sql = "SELECT * FROM stadium WHERE Name = ?";
+        $data = $this->rows($sql, [$name]);
+        return $data;
+    }
+
+    public function getStadiumByCity($city) {
+        $sql = "SELECT * FROM stadium WHERE City = ?";
+        $data = $this->rows($sql, [$city]);
+        return $data;
+    }    
 }

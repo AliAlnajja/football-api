@@ -24,8 +24,19 @@ function handleGetAllTeams(Request $request, Response $response, array $args) {
     $team_model = new TeamModel();
     $team_model->setPaginationOptions($input_page_number, $input_per_page);
 
-    $team_info = $team_model->getAll();
-        
+    $filter_params = $request->getQueryParams();
+    if(isset($filter_params["name"])) {
+        //get teams by name
+        $team_info = $team_model->getTeamsByName($filter_params["name"]);
+    }
+    else if(isset($filter_params["trophies"])) {
+        //get teams by trophies
+        $team_info = $team_model->getTeamsByTotalTrophies($filter_params["trophies"]);
+    }
+    else {
+        $team_info = $team_model->getAll();
+    }
+
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {
         $response_data = json_encode($team_info, JSON_INVALID_UTF8_SUBSTITUTE);

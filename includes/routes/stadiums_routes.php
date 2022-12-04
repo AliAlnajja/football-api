@@ -15,7 +15,19 @@ function handleGetAllStadiums(Request $request, Response $response, array $args)
     $response_code = HTTP_OK;
     $stadium_model = new StadiumModel();
 
-    $stadium_info = $stadium_model->getAll();
+    $filter_params = $request->getQueryParams();
+    if(isset($filter_params["name"])) {
+        // get stadiums by name
+        $stadium_info = $stadium_model->getStadiumByName($filter_params["name"]);
+    }    
+    else if(isset($filter_params["city"])) {
+        // get stadiums by city
+        $stadium_info = $stadium_model->getStadiumByCity($filter_params["city"]);
+    }
+    else {
+        $stadium_info = $stadium_model->getAll();
+    }
+
         
     $requested_format = $request->getHeader('Accept');  
     if ($requested_format[0] === APP_MEDIA_TYPE_JSON) {
