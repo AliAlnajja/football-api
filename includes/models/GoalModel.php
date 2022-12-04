@@ -35,6 +35,12 @@ class GoalModel extends BaseModel {
         return $data;
     }
 
+    public function getGoalsByAmount($amount) {
+        $sql = "SELECT * FROM goal WHERE Amount = ?";
+        $data = $this->rows($sql, [$amount]);
+        return $data;
+    }
+
 
     public function createGoal($goal){
         $data = $this->insert($this->table_name, $goal) ;

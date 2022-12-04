@@ -41,6 +41,18 @@ class TeamModel extends BaseModel {
         return $data;
     }
 
+    public function getTeamsByName($name) {
+        $sql = "SELECT * FROM teams WHERE Name = ?";
+        $data = $this->rows($sql, [$name]);
+        return $data;
+    }
+
+    public function getTeamsByTotalTrophies($trophies) {
+        $sql = "SELECT * FROM teams WHERE TotalTrophies = ?";
+        $data = $this->rows($sql, [$trophies]);
+        return $data;
+    }
+
     /**
      * Delete a specifc team.       
      * @param int $team_id the id that specifies the team that will be delete
