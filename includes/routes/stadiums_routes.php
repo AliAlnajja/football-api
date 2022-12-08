@@ -6,6 +6,7 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/StadiumModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllStadiums(Request $request, Response $response, array $args) {
@@ -14,6 +15,10 @@ function handleGetAllStadiums(Request $request, Response $response, array $args)
     $response_data = array();
     $response_code = HTTP_OK;
     $stadium_model = new StadiumModel();
+
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfStadiums");
 
     $filter_params = $request->getQueryParams();
     if(isset($filter_params["name"])) {

@@ -6,6 +6,7 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/TeamModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllTeams(Request $request, Response $response, array $args) {
@@ -13,6 +14,10 @@ function handleGetAllTeams(Request $request, Response $response, array $args) {
     $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
     // Instantiate the model.
     // Set the pagination options.
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfTeams");
+
     if($input_page_number === null && $input_per_page === null){
         $input_page_number = 1;
         $input_per_page = 10;

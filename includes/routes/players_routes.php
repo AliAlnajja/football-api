@@ -9,10 +9,16 @@ require_once __DIR__ . './../models/PlayerModel.php';
 // require_once __DIR__ . './../../controllers/PlayerInfoController.php';
 require_once './controllers/PlayerInfoController.php';
 // require_once './helpers/WebServiceInvoker.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 function handleCompositeResource(Request $request, Response $response, array $args) {
     $playerInfo_and_players = Array();
     $response_code = HTTP_OK;
+
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfPlayers");
+
     $filter_params = $request->getQueryParams();
     if(isset($filter_params["p"]) && isset($filter_params["t"])) {
         $playerInfo = new PlayerInfoController();

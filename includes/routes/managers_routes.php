@@ -6,6 +6,7 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/ManagerModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllManagers(Request $request, Response $response, array $args) {
@@ -14,6 +15,10 @@ function handleGetAllManagers(Request $request, Response $response, array $args)
     $response_data = array();
     $response_code = HTTP_OK;
     $manager_model = new ManagerModel();
+
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfManagers");
     
     $filter_params = $request->getQueryParams();
     if (isset($filter_params["contract"])) {

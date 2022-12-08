@@ -6,6 +6,7 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/FixtureModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllFixtures(Request $request, Response $response, array $args) {
@@ -15,7 +16,9 @@ function handleGetAllFixtures(Request $request, Response $response, array $args)
     $response_code = HTTP_OK;
     $fixture_model = new FixtureModel();
 
-    
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfFixtures");
         
     $filter_params = $request->getQueryParams();
     if (isset($filter_params["weather"])) {

@@ -50,7 +50,6 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         
 //-- Step 5) Include the files containing the definitions of the callbacks.
 require_once './includes/routes/token_routes.php';
-require_once './includes/routes/customers_routes.php';
 require_once './includes/routes/teams_routes.php';
 require_once './includes/routes/assists_routes.php';
 require_once './includes/routes/cards_routes.php';

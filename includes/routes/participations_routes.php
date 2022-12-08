@@ -6,6 +6,7 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/ParticipationModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllParticipations(Request $request, Response $response, array $args) {
@@ -14,6 +15,10 @@ function handleGetAllParticipations(Request $request, Response $response, array 
     $response_data = array();
     $response_code = HTTP_OK;
     $participation_model = new ParticipationModel();
+
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfParticipation");
 
     $participation_info = $participation_model->getAll();
         

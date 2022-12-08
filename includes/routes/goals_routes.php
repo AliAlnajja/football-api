@@ -6,11 +6,16 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/GoalModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllGoals(Request $request, Response $response, array $args) {
     $input_page_number = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
     $input_per_page = filter_input(INPUT_GET, "per_page", FILTER_VALIDATE_INT);
+
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfGoals");
 
     if($input_page_number === null && $input_per_page === null){
         $input_page_number = 1;

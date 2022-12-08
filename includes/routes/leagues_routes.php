@@ -6,6 +6,7 @@ use Slim\Factory\AppFactory;
 
 require_once __DIR__ . './../models/BaseModel.php';
 require_once __DIR__ . './../models/LeagueModel.php';
+require_once __DIR__ . './../models/WSLoggingModel.php';
 
 
 function handleGetAllLeagues(Request $request, Response $response, array $args) {
@@ -14,6 +15,10 @@ function handleGetAllLeagues(Request $request, Response $response, array $args) 
     $response_data = array();
     $response_code = HTTP_OK;
     $league_model = new LeagueModel();
+
+    $logging_model = new WSLoggingModel();
+    $decoded_jwt = $request->getAttribute('decoded_token_data');
+    $logging_model->logUserAction($decoded_jwt, "getListOfLeagues");
 
     $league_info = $league_model->getAll();
         
