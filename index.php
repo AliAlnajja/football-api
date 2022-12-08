@@ -9,6 +9,12 @@ require __DIR__ . '/vendor/autoload.php';
 require_once './includes/app_constants.php';
 require_once './includes/helpers/helper_functions.php';
 require_once './includes/helpers/Paginator.php';
+require_once './includes/helpers/JWTManager.php';
+
+define('APP_BASE_DIR', __DIR__);
+// IMPORTANT: This file must be added to your .ignore file. 
+define('APP_ENV_CONFIG', 'config.env');
+
 
 //--Step 1) Instantiate App.
 $app = AppFactory::create();
@@ -23,7 +29,27 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 // TODO: change the name of the sub directory here. You also need to change it in .htaccess
 $app->setBasePath("/football-api");
 
+$jwt_secret = JWTManager::getSecretKey();
+$api_base_path = "/football-api";
+$app->add(new Tuupola\Middleware\JwtAuthentication([
+            'secret' => $jwt_secret,
+            'algorithm' => 'HS256',
+            'secure' => false, // only for localhost for prod and test env set true            
+            "path" => $api_base_path, // the base path of the API
+            "attribute" => "decoded_token_data",
+            "ignore" => ["$api_base_path/token", "$api_base_path/account"],
+            "error" => function ($response, $arguments) {
+                $data["status"] = "error";
+                $data["message"] = $arguments["message"];
+                $response->getBody()->write(
+                        json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+                );
+                return $response->withHeader("Content-Type", "application/json;charset=utf-8");
+            }
+        ]));
+        
 //-- Step 5) Include the files containing the definitions of the callbacks.
+require_once './includes/routes/token_routes.php';
 require_once './includes/routes/customers_routes.php';
 require_once './includes/routes/teams_routes.php';
 require_once './includes/routes/assists_routes.php';
@@ -35,6 +61,9 @@ require_once './includes/routes/managers_routes.php';
 require_once './includes/routes/participations_routes.php';
 require_once './includes/routes/players_routes.php';
 require_once './includes/routes/stadiums_routes.php';
+
+$app->post("/token", "handleGetToken");
+$app->post("/account", "handleCreateUserAccount");
 
 $app->get("/playersAndPlayerInfo", "handleCompositeResource");
 $app->get("/teams", "handleGetAllTeams");
