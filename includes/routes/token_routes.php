@@ -64,14 +64,14 @@ function handleCreateUserAccount(Request $request, Response $response, array $ar
     $user_model = new UserModel();
     $new_user = $user_model->createUser($user_data);
     //--
-    if (!$new_user) {
-        // Failed to create the new user.
-        return prepareResponse($response,
-                ['error' => true, 'message' => 'Failed to create the new user.'], 400);
-    }
+    // if (!$new_user) {
+    //     // Failed to create the new user.
+    //     return prepareResponse($response,
+    //             ['error' => true, 'message' => 'Failed to create the new user.'], 400);
+    // }
     // The user account has been created successfully.  
     return prepareResponse($response,
-            ['error' => false, 'message' => 'The new user account has been created successfully!'], 400);
+            ['error' => false, 'message' => 'The new user account has been created successfully!'], 201);
 }
 
 function prepareResponse(Response $response, $in_payload, $status_code) {
