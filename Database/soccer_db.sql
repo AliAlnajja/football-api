@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2022 at 11:43 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 7.4.30
+-- Generation Time: Dec 09, 2022 at 04:05 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,7 +64,9 @@ INSERT INTO `assist` (`AssistId`, `PlayerId`, `Amount`) VALUES
 (24, 117, 3),
 (25, 125, 0),
 (26, 128, 0),
-(27, 139, 0);
+(27, 139, 0),
+(40, 100, 9),
+(41, 101, 9);
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,8 @@ INSERT INTO `card` (`CardId`, `PlayerId`, `Total`, `CardType`) VALUES
 (24, 24, 8, 'yellow'),
 (25, 75, 9, 'yellow'),
 (26, 70, 8, 'yellow'),
-(27, 71, 8, 'yellow');
+(27, 71, 8, 'yellow'),
+(40, 108, 5, 'yellow');
 
 -- --------------------------------------------------------
 
@@ -622,7 +625,57 @@ INSERT INTO `teams` (`TeamId`, `Name`, `TotalTrophies`, `FoundedDate`, `Country`
 (17, 'Southampton FC', 3, '1865-01-01', 'England', 200, 17, 17, 1),
 (18, 'Tottenham Hotspur FC', 26, '1885-09-05', 'England', 849, 18, 18, 1),
 (19, 'West Ham United FC', 7, '1895-01-01', 'England', 900, 19, 19, 1),
-(20, 'Wolverhampton Wanderers', 20, '1877-01-01', 'England', 450, 20, 20, 1);
+(20, 'Wolverhampton Wanderers', 20, '1877-01-01', 'England', 450, 20, 20, 1),
+(40, 'Arsenal FC', 47, '1886-12-01', 'England', 2888, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ws_log`
+--
+
+CREATE TABLE `ws_log` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `user_action` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `logged_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `user_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `ws_log`
+--
+
+INSERT INTO `ws_log` (`id`, `email`, `user_action`, `logged_at`, `user_id`) VALUES
+(1, 'ali_alnajjar@yahoo.com', 'getListOfArtists', '2022-12-07 13:45:10', 1),
+(2, 'ali_alnajjar@yahoo.com', 'getListOfGoals', '2022-12-07 14:24:07', 1),
+(3, 'ali_alnajjar@yahoo.com', 'getListOfFixtures', '2022-12-07 14:24:13', 1),
+(4, 'ali_alnajjar@yahoo.com', 'getListOfAssists', '2022-12-07 14:24:21', 1),
+(5, 'ali_alnajjar@yahoo.com', 'getListOfLeagues', '2022-12-07 14:24:28', 1),
+(6, 'ali_alnajjar@yahoo.com', 'getListOfManagers', '2022-12-07 14:24:33', 1),
+(7, 'ali_alnajjar@yahoo.com', 'getListOfCards', '2022-12-07 14:24:48', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ws_users`
+--
+
+CREATE TABLE `ws_users` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '2022-12-01 08:11:50'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `ws_users`
+--
+
+INSERT INTO `ws_users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `created_at`) VALUES
+(1, 'Ali', 'Alnajjar', 'ali_alnajjar@yahoo.com', '$2y$15$48T..hKlBgpbEKlXfFo88eAd8WIEGSQsMgsrxVVPiBNkZt4U22dFG', '2022-12-07 13:32:32');
 
 --
 -- Indexes for dumped tables
@@ -690,6 +743,34 @@ ALTER TABLE `teams`
   ADD PRIMARY KEY (`TeamId`),
   ADD KEY `Team_Manager_FK` (`ManagerId`),
   ADD KEY `Team_League_FK` (`LeagueId`);
+
+--
+-- Indexes for table `ws_log`
+--
+ALTER TABLE `ws_log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ws_users`
+--
+ALTER TABLE `ws_users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ws_log`
+--
+ALTER TABLE `ws_log`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `ws_users`
+--
+ALTER TABLE `ws_users`
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
